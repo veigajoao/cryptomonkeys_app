@@ -1,12 +1,14 @@
 import React from "react";
 
 // Layout
-
 import AppHeader from "../../Layout/AppHeader/";
 import AppSidebar from "../../Layout/AppSidebar/";
 
 // Theme Options
 import ThemeOptions from "../../Layout/ThemeOptions/";
+
+// Internal components
+import BuyBoxes from "./Components/BuyBoxes";
 
 const Applications = ({ match }) => (
   <>
@@ -16,11 +18,8 @@ const Applications = ({ match }) => (
       <AppSidebar />
       <div className="app-main__outer">
         <div className="app-main__inner p-0">
-          Cocô
+          <BuyBoxes/>
         </div>
-        {/* <div className="app-wrapper-footer">
-          <AppFooter />
-        </div> */}
       </div>
     </div>
   </>
