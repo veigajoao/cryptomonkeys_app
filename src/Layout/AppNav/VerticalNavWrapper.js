@@ -3,13 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import MetisMenu from "react-metismenu";
 import { setEnableMobileMenu } from "../../reducers/ThemeOptions";
-import {
-  MainNav,
-  ComponentsNav,
-  FormsNav,
-  WidgetsNav,
-  ChartsNav,
-} from "./NavItems";
+import { MainNav } from "./NavItems";
 
 class Nav extends Component {
   state = {};
@@ -24,22 +18,6 @@ class Nav extends Component {
       <Fragment>
         <h5 className="app-sidebar__heading">Menu</h5>
         <MetisMenu content={MainNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
-          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
-
-        <h5 className="app-sidebar__heading">UI Components</h5>
-        <MetisMenu content={ComponentsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
-          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
-
-        <h5 className="app-sidebar__heading">Dashboard Widgets</h5>
-        <MetisMenu content={WidgetsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
-          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
-
-        <h5 className="app-sidebar__heading">Forms</h5>
-        <MetisMenu content={FormsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
-          className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
-
-        <h5 className="app-sidebar__heading">Charts</h5>
-        <MetisMenu content={ChartsNav} onSelected={this.toggleMobileSidebar} activeLinkFromLocation
           className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
       </Fragment>
     );

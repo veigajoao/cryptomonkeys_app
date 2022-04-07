@@ -19,6 +19,7 @@
     padding: 0;
     position: relative;
   }
+
   .metismenu-container {
     list-style: none;
 
@@ -42,6 +43,7 @@
         background: $dropdown-link-hover-bg;
         text-decoration: none;
         //transform: scale(1.02);
+        color: black;
 
         i.metismenu-icon {
           opacity: .6;
@@ -109,11 +111,11 @@
         & > .metismenu-item > .metismenu-link {
           height: 2.3em;
           line-height: 2.3em;
-          color: $gray-600;
+          color: white;
           margin: 0 0 3px;
 
           &:hover {
-            color: $primary;
+            color: black !important;
           }
 
           .metismenu-icon {

@@ -31,9 +31,9 @@ const MMButton = (props) => {
 
     let buttonElement;
     if (account !== "none" && account !== undefined) {
-        buttonElement = <Button outline color="primary"><img src={metaMaskLogo} alt={""} className='me-5' style={{width: "30px", height: "auto"}}/>{account.slice(0,5) + "..." + account.slice(account.length - 5)}</Button>
+        buttonElement = <Button outline color="primary"><img src={metaMaskLogo} alt={""} className='me-3' style={{width: "30px", height: "auto"}}/>{account.slice(0,5) + "..." + account.slice(account.length - 5)}</Button>
     } else {
-        buttonElement = <Button outline color="primary" onClick={() => connectWalletExtended()}><img src={metaMaskLogo} alt={""} className='me-5' style={{width: "30px", height: "auto"}}/>Connect MetaMask</Button>
+        buttonElement = <Button outline color="primary" onClick={() => connectWalletExtended()}><img src={metaMaskLogo} alt={""} className='me-3' style={{width: "30px", height: "auto"}}/>Connect MetaMask</Button>
     }
     
     return (

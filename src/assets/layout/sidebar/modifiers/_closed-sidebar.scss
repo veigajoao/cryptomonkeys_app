@@ -30,6 +30,11 @@
       .metismenu-link {
         text-indent: -99rem;
         padding: 0;
+        color: white;
+
+        &:hover {
+          color: black;
+        }
       }
 
       .metismenu-icon {

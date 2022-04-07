@@ -1,83 +1,62 @@
 export const MainNav = [
   {
-    icon: "pe-7s-rocket",
-    label: "Dashboards",
+    icon: "pe-7s-joy",
+    label: "Game Modes",
     content: [
       {
-        label: "Analytics",
+        label: "Farm Mode",
         to: "#/dashboards/analytics",
       },
       {
-        label: "Commerce",
+        label: "Strategy Mode",
         to: "#/dashboards/commerce",
       },
       {
-        label: "Sales",
+        label: "PVP Mode",
         to: "#/dashboards/sales",
-      },
-      {
-        label: "Minimal",
-        content: [
-          {
-            label: "Variation 1",
-            to: "#/dashboards/minimal-dashboard-1",
-          },
-          {
-            label: "Variation 2",
-            to: "#/dashboards/minimal-dashboard-2",
-          },
-        ],
-      },
-      {
-        label: "CRM",
-        to: "#/dashboards/crm",
       },
     ],
   },
   {
-    icon: "pe-7s-browser",
-    label: "Pages",
+    icon: "pe-7s-wallet",
+    label: "My Assets",
     content: [
       {
-        label: "Login",
+        label: "NFT Inventory",
         to: "#/pages/login",
       },
       {
-        label: "Login Boxed",
+        label: "Buy NFTs",
         to: "#/pages/login-boxed",
       },
       {
-        label: "Register",
+        label: "Withdrawal Bnanas",
         to: "#/pages/register",
-      },
-      {
-        label: "Register Boxed",
-        to: "#/pages/register-boxed",
-      },
-      {
-        label: "Forgot Password",
-        to: "#/pages/forgot-password",
-      },
-      {
-        label: "Forgot Password Boxed",
-        to: "#/pages/forgot-password-boxed",
       },
     ],
   },
   {
-    icon: "pe-7s-plugin",
-    label: "Applications",
+    icon: "pe-7s-study",
+    label: "Instructions",
     content: [
       {
-        label: "Mailbox",
+        label: "Whitepaper",
         to: "#/apps/mailbox",
       },
       {
-        label: "Chat",
+        label: "How to play",
         to: "#/apps/chat",
       },
       {
-        label: "FAQ Section",
+        label: "Telegram Group",
+        to: "#/apps/faq-section",
+      },
+      {
+        label: "Discord",
+        to: "#/apps/faq-section",
+      },
+      {
+        label: "Main Page",
         to: "#/apps/faq-section",
       },
     ],
