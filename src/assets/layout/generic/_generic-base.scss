@@ -11,5 +11,6 @@ button,
   min-height: 100vh;
   flex-direction: column;
   margin: 0;
-  background: url("../../utils/images/background.jpg") center !important;
+  background: url("../../utils/images/background.jpg") no-repeat center center !important;
+  background-size: cover !important;
 }

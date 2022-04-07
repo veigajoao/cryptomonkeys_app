@@ -1,24 +1,24 @@
-import Web3 from "web3";
-import detectEthereumProvider from '@metamask/detect-provider';
+import Web3 from "web3/dist/web3.min";
+import detectEthereumProvider from '@metamask/detect-provider/dist/detect-provider.min';
 
-import contractFileWhitelist from './contracts_build/WhiteListedPresale.json';
-import contractFileBananacoin from './contracts_build/BananaCoin.json';
-import contractFileNft from './contracts_build/CryptoMonkeyChars.json';
-import contractFilePresale from './contracts_build/PublicPresale.json';
+// import contractFileWhitelist from './contracts_build/WhiteListedPresale.json';
+import contractFileBananacoin from './abis/BananaCoin.json';
+// import contractFileNft from './contracts_build/CryptoMonkeyChars.json';
+// import contractFilePresale from './contracts_build/PublicPresale.json';
 
-const abiWhitelist = contractFileWhitelist.abi;
-const whitelistAddress = "0x8E0ED58bAf27CA6f8FE61317C7cf53BB37e5b00f";
+// const abiWhitelist = "contractFileWhitelist.abi";
+// const whitelistAddress = "0x8E0ED58bAf27CA6f8FE61317C7cf53BB37e5b00f";
 
 const abiBusd = contractFileBananacoin.abi;
-const busdAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+// const busdAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
 
-const abiPresale = contractFilePresale.abi;
-const presaleAddress = "0x0C3fD0A556549D261A9758cc7c6F33f6dde298F7";
+// const abiPresale = "contractFilePresale.abi";
+// const presaleAddress = "0x0C3fD0A556549D261A9758cc7c6F33f6dde298F7";
 
 const bnanaAddress = "0xf9b27685bfaAF96AaedffD45DA69BF7F5d0ea07D";
 
-const abiNft = contractFileNft.abi;
-const nftAddress = "0x700Ab8d2b5Ecc5d5aE2Ae6D634656F63aEF5040B";
+// const abiNft = "contractFileNft.abi";
+// const nftAddress = "0x700Ab8d2b5Ecc5d5aE2Ae6D634656F63aEF5040B";
 
 const bscId = '0x38';
 const bscRpcurls = [
@@ -42,7 +42,7 @@ const bscBlockExplorer = ['https://bscscan.com/'];
 //returns true if change was successfu, false if it wasn't
 const switchToBsc = async () => {
     try {
-        await ethereum.request({
+        await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
             params: [{ chainId: bscId }],
         });
@@ -50,7 +50,7 @@ const switchToBsc = async () => {
     } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         try {
-            await ethereum.request({
+            await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [
                 {
@@ -76,7 +76,7 @@ const switchToBsc = async () => {
 };
 
 const addToken = async () => {
-    return await ethereum.request({
+    return await window.ethereum.request({
         method: 'wallet_watchAsset',
         params: {
             type: 'ERC20',
@@ -91,8 +91,9 @@ const addToken = async () => {
 }
 
 const checkNetwork = async () => {
-    const chainId = await ethereum.request({ method: 'eth_chainId' });
-    if (chainId != bscId) {
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== bscId) {
+
         return await switchToBsc();
     } else {
         return true;
@@ -101,9 +102,9 @@ const checkNetwork = async () => {
 
 const connectWallet = async () => {
 
+    let provider;
     //check if code is on client or server side
     if (typeof window !== 'undefined') {
-        
         provider = await detectEthereumProvider();
         if (provider == null) {
             provider = 'undefined';
@@ -117,13 +118,14 @@ const connectWallet = async () => {
         window.web3Instance = new Web3(provider);
         window.networkSuccess = await checkNetwork();
         window.isUserWallet = true;
-        window.whitelistContract = new web3.eth.Contract(abiWhitelist, whitelistAddress),
-        window.priceTokenContract =  new web3.eth.Contract(abiBusd, busdAddress),
-        window.nftContract = new web3.eth.Contract(abiNft, nftAddress),
-        window.bnanaContract = new web3.eth.Contract(abiBusd, bnanaAddress),
-        window.presaleContract = new web3.eth.Contract(abiPresale, presaleAddress),
+        // window.whitelistContract = new window.web3Instance.eth.Contract(abiWhitelist, whitelistAddress);
+        // window.priceTokenContract =  new window.web3Instance.eth.Contract(abiBusd, busdAddress);
+        // window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
+        window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
+        // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
         
         await addToken();
+        return true;
     } else {
         //if on server environment
         const providerServer = new Web3.providers.HttpProvider(

@@ -4,7 +4,6 @@ import React from "react";
 
 import AppHeader from "../../Layout/AppHeader/";
 import AppSidebar from "../../Layout/AppSidebar/";
-import AppFooter from "../../Layout/AppFooter/";
 
 // Theme Options
 import ThemeOptions from "../../Layout/ThemeOptions/";
@@ -19,9 +18,9 @@ const Applications = ({ match }) => (
         <div className="app-main__inner p-0">
           Cocô
         </div>
-        <div className="app-wrapper-footer">
+        {/* <div className="app-wrapper-footer">
           <AppFooter />
-        </div>
+        </div> */}
       </div>
     </div>
   </>

@@ -126,7 +126,7 @@
       width: 90%;
       top: 0;
       transition: all .2s;
-      background: $white;
+      background: #561473;
       @include border-radius(50px);
       padding: 0 10px;
       overflow: hidden;
@@ -177,7 +177,7 @@
       }
 
       .header-mobile-open {
-        background: $gray-800;
+        background: #561473;
       }
 
     }

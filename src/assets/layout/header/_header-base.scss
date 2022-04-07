@@ -69,7 +69,7 @@
   padding: 0 $layout-spacer-x;
   height: $app-header-height;
   align-items: center;
-  background-color: #561473;
+  background-color: #561473 !important;
 }
 
 // Header Modifiers
@@ -84,4 +84,6 @@
 
 @import "themes/header-light";
 @import "themes/header-dark";
+
+
 //@import "themes/header-inverted";
