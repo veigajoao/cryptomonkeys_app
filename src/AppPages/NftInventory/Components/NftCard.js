@@ -82,7 +82,7 @@ const getMonkeyRarity = (code) => {
 
     return (
         <>
-            <span className="position-absolute top-0 translate-middle badge rounded-pill" style={{"left": "95%", "font-size": "1rem", background: rarityColor, color: "black"}}>
+            <span className="position-absolute top-0 translate-middle badge rounded-pill" style={{"left": "95%", "fontSize": "1rem", background: rarityColor, color: "black"}}>
                 {rarity}
                 <span className="visually-hidden">rarity level</span>
             </span>

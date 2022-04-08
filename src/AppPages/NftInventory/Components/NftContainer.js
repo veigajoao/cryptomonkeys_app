@@ -21,6 +21,7 @@ const NftContainer = () => {
     const fetchData = async () => {
       if (window.isUserWallet !== true) {
         setNFTList("load");
+        return "";
       }
       const walletHash = await window.web3Instance.eth.getAccounts();
       const userBalance = await window.nftContract.methods.balanceOf(walletHash[0]).call();
@@ -82,9 +83,9 @@ const NftContainer = () => {
     } else {
       NFTContent = [];
       for (const NFT of NFTList) {
-        if (!NFT.nftData[3]) {
-          continue;
-        }
+        // if (!NFT.nftData[3]) {
+        //   continue;
+        // }
         NFTContent.push(<NFTCard monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={NFT.nftIndex}/>)
       }
     }
