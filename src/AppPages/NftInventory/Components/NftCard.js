@@ -82,7 +82,7 @@ const getMonkeyRarity = (code) => {
 
     return (
         <>
-            <span className="position-absolute top-0 translate-middle badge rounded-pill" style={{"left": "95%", "fontSize": "1rem", background: rarityColor, color: "black"}}>
+            <span className="position-absolute top-0 translate-middle badge rounded-pill" style={{"left": "50%", "fontSize": "1rem", background: rarityColor, color: "black"}}>
                 {rarity}
                 <span className="visually-hidden">rarity level</span>
             </span>
@@ -92,7 +92,7 @@ const getMonkeyRarity = (code) => {
 
 const NFTCard = (props) => {
 
-    const { monkeyType, monkeyLevel, tokenId } = props;
+    const { monkeyType, monkeyLevel, tokenId, upgradeNftRequest } = props;
 
     const monkeyName = getMonkeyName(monkeyType);
 
@@ -106,10 +106,10 @@ const NFTCard = (props) => {
                 {monkeyRarity}
                 <CardImg top width="80%" src={monkeyImg} alt="Common Portal" />
                 <CardBody>
-                <CardTitle style={{color: "white"}}>{monkeyName}</CardTitle>
-                <CardSubtitle>#{tokenId}</CardSubtitle>
-                <CardSubtitle>Level: {monkeyLevel}</CardSubtitle>
-                <Button disbled={monkeyLevel == "1"} color="primary">Upgrade monkey</Button>
+                    <CardTitle style={{color: "white"}}>{monkeyName}</CardTitle>
+                    <CardSubtitle>#{tokenId}</CardSubtitle>
+                    <CardSubtitle>Level: {monkeyLevel}</CardSubtitle>
+                    <Button onClick={upgradeNftRequest} disabled={monkeyLevel === "2"} color="primary">Upgrade monkey</Button>
                 </CardBody>
             </Card>
         </Col>
