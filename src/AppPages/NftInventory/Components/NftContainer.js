@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 
 import NFTCard from "./NftCard";
+import UpgradeModal from "./UpgradeModal";
 
 import metaMaskLogo from "../../../assets/metaMask/MetaMask.png";
 
@@ -86,7 +87,9 @@ const NftContainer = () => {
         // if (!NFT.nftData[3]) {
         //   continue;
         // }
-        NFTContent.push(<NFTCard monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={NFT.nftIndex}/>)
+        NFTContent.push(
+          <NFTCard monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={NFT.nftIndex}/>
+        );
       }
     }
 
@@ -114,6 +117,7 @@ const NftContainer = () => {
             </Row>
           </CSSTransition>
         </TransitionGroup>
+      <UpgradeModal/>
       </Fragment>
     );
 }
