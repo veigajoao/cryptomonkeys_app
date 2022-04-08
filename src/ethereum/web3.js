@@ -3,7 +3,7 @@ import detectEthereumProvider from '@metamask/detect-provider/dist/detect-provid
 
 // import contractFileWhitelist from './contracts_build/WhiteListedPresale.json';
 import contractFileBananacoin from './abis/BananaCoin.json';
-// import contractFileNft from './contracts_build/CryptoMonkeyChars.json';
+import contractFileNft from './abis/CryptoMonkeyChars.json';
 // import contractFilePresale from './contracts_build/PublicPresale.json';
 
 // const abiWhitelist = "contractFileWhitelist.abi";
@@ -17,8 +17,8 @@ const abiBusd = contractFileBananacoin.abi;
 
 const bnanaAddress = "0xf9b27685bfaAF96AaedffD45DA69BF7F5d0ea07D";
 
-// const abiNft = "contractFileNft.abi";
-// const nftAddress = "0x700Ab8d2b5Ecc5d5aE2Ae6D634656F63aEF5040B";
+const abiNft = contractFileNft.abi;
+const nftAddress = "0x700Ab8d2b5Ecc5d5aE2Ae6D634656F63aEF5040B";
 
 const bscId = '0x38';
 const bscRpcurls = [
@@ -120,7 +120,7 @@ const connectWallet = async () => {
         window.isUserWallet = true;
         // window.whitelistContract = new window.web3Instance.eth.Contract(abiWhitelist, whitelistAddress);
         // window.priceTokenContract =  new window.web3Instance.eth.Contract(abiBusd, busdAddress);
-        // window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
+        window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
         window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
         // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
         

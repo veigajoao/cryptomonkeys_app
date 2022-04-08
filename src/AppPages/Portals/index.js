@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 // Layout
-import AppHeader from "../../Layout/AppHeader/";
-import AppSidebar from "../../Layout/AppSidebar/";
+import AppHeader from "../../Layout/AppHeader";
+import AppSidebar from "../../Layout/AppSidebar";
 
 // Theme Options
-import ThemeOptions from "../../Layout/ThemeOptions/";
+import ThemeOptions from "../../Layout/ThemeOptions";
 
 // Internal components
-import NftContainer from "./Components/NftContainer";
+import BuyBoxes from "./Components/BuyBoxes";
 
 function useForceUpdate(){
   const [value, setValue] = useState(0); // integer state
@@ -22,12 +22,12 @@ const Portals = ({ match }) => {
   return (
     <>
       <ThemeOptions />
-      <AppHeader forceUpdate={() => forceUpdate()} />
+      <AppHeader forceUpdate={() => forceUpdate()}/>
       <div className="app-main">
         <AppSidebar />
         <div className="app-main__outer">
           <div className="app-main__inner p-0">
-            <NftContainer/>
+            <BuyBoxes/>
           </div>
         </div>
       </div>

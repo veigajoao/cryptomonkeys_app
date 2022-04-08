@@ -14,7 +14,7 @@ import LockedBalanceButton from "./Web3Components/LockedBalanceButton";
 class Header extends React.Component {
 
   rerenderParentCallback = () => {
-    this.forceUpdate();
+    this.props.forceUpdate();
   }
 
   render() {

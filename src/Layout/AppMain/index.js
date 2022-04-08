@@ -16,6 +16,7 @@ const Forms = lazy(() => import("../../DemoPages/Forms"));
 const Tables = lazy(() => import("../../DemoPages/Tables"));
 
 const NftInventory = lazy(() => import("../../AppPages/NftInventory"));
+const Portals = lazy(() => import("../../AppPages/Portals"));
 
 
 const AppMain = () => {
@@ -185,7 +186,25 @@ const AppMain = () => {
                 <Route path="/dashboards" component={Dashboards}/>
             </Suspense>
 
-             {/* Nft inventory */}
+            {/* Portals */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-grid-cy"/>
+                        </div>
+                        <h6 className="mt-3">
+                            Please wait while we load all the Dashboards examples
+                            <small>Because this is a demonstration, we load at once all the Dashboards examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route exact path="/portals" component={Portals}/>
+            </Suspense>
+
+            {/* Nft inventory */}
 
              <Suspense fallback={
                 <div className="loader-container">
