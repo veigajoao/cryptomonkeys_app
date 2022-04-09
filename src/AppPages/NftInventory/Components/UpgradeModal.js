@@ -56,7 +56,7 @@ class UpgradeModal extends React.Component {
     } else if (this.props.NFTProcessPhase === 1) {
       modalText = (
         <>
-          <Spinner type="spinner-border" color="warning" />
+          <Spinner type="grow" color="warning" />
           Please wait while the blockchain processes your transaction...
         </>
       )

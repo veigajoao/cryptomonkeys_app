@@ -19,11 +19,22 @@ import MysticalPortal from "../../../assets/portals/mystical2.png";
 import metaMaskLogo from "../../../assets/metaMask/MetaMask.png";
 import OpenPortalModal from "./OpenPortalModal";
 
+import {mintCostCommon, mintCostGolden, mintCostMystical} from "../../../ethereum/web3"
+
+const getMintCost = (rarity) => {
+  let mintMap = {
+    "1": mintCostCommon,
+    "2": mintCostGolden,
+    "3": mintCostMystical
+  };
+  return mintMap[rarity];
+}
+
 const BuyBoxes = () => {
 
     const [NFTList, setNFTList] = useState("load");
     const [openModal, setOpenModal] = useState(false);
-    const [tokenObject, setTokenObject] = useState({});
+    const [tokenObject, setTokenObject] = useState("approve");
 
     const fetchData = async () => {
       if (window.isUserWallet !== true) {
@@ -49,12 +60,30 @@ const BuyBoxes = () => {
     });
 
     const buyPortal = async (rarity) => {
-
+      const mintCost = getMintCost(rarity);
+      const walletHash = await window.web3Instance.eth.getAccounts();
+      await window.bnanaContract.methods.approve(window.nftContract.options.address, mintCost).send({from: walletHash[0]});
+      window.nftContract.methods.mintNft(walletHash[0], rarity).send({from: walletHash[0]});
+      fetchData();
     }
 
-    const openPortal = async (tokenId) => {
-
+    const openPortal = async (tokenObject) => {
+      setTokenObject("approve");
+      setOpenModal(true);
+      // const walletHash = await window.web3Instance.eth.getAccounts();
+      // await window.nftContract.methods.openBox(tokenObject.nftIndex).send({from: walletHash[0]});
+      setTokenObject(tokenObject);
     }
+
+    const callOpenPortal = (rarityType) => {
+      let tokenObject;
+      for (let item of NFTList) {
+        if (item.nftData[4] === rarityType ) {
+          tokenObject = item;
+        }
+        openPortal(tokenObject);
+      }
+    };
 
     let internalContent;
     if (window.isUserWallet !== true) {
@@ -102,50 +131,50 @@ const BuyBoxes = () => {
       internalContent = (
         <>
           <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
-            <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
-                {commonCount}
-                <span className="visually-hidden">common portals</span>
-              </span>
-              <CardImg top width="80%" src={commonPortal} alt="Common Portal" />
-              <CardBody>
-                <CardTitle style={{color: "white"}}>Common Portal</CardTitle>
-                <CardSubtitle>BUSD 80</CardSubtitle>
-                <Button color="primary" className="me-2">Open portal</Button>
-                <Button color="primary">Buy portal</Button>
-              </CardBody>
-            </Card>
-        </Col>
-        <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
-            <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
-                {goldenCount}
-                <span className="visually-hidden">golden portals</span>
-              </span>
-              <CardImg top width="80%" src={goldenPortal} alt="Common Portal" />
-              <CardBody>
-                <CardTitle style={{color: "white"}} >Golden Portal</CardTitle>
-                <CardSubtitle>BUSD 125</CardSubtitle>
-                <Button color="primary" className="me-2">Open portal</Button>
-                <Button color="primary">Buy portal</Button>
-              </CardBody>
-            </Card>
-        </Col>
-        <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
-            <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
-                {mysticalCount}
-                <span className="visually-hidden">mystical portals</span>
-              </span>
-              <CardImg top width="80%" src={MysticalPortal} alt="Common Portal" />
-              <CardBody>
-                <CardTitle style={{color: "white"}}>Mystical Portal</CardTitle>
-                <CardSubtitle>BUSD 200</CardSubtitle>
-                <Button color="primary" className="me-2">Open portal</Button>
-                <Button color="primary">Buy portal</Button>
-              </CardBody>
-            </Card>
-        </Col>
+              <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                  {commonCount}
+                  <span className="visually-hidden">common portals</span>
+                </span>
+                <CardImg top width="80%" src={commonPortal} alt="Common Portal" />
+                <CardBody>
+                  <CardTitle style={{color: "white"}}>Common Portal</CardTitle>
+                  <CardSubtitle>BUSD 80</CardSubtitle>
+                  <Button disabled={commonCount === 0} onClick={() => callOpenPortal("1")} color="primary" className="me-2">Open portal</Button>
+                  <Button onClick={() => buyPortal("1")} color="primary">Buy portal</Button>
+                </CardBody>
+              </Card>
+          </Col>
+          <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
+              <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                  {goldenCount}
+                  <span className="visually-hidden">golden portals</span>
+                </span>
+                <CardImg top width="80%" src={goldenPortal} alt="Common Portal" />
+                <CardBody>
+                  <CardTitle style={{color: "white"}} >Golden Portal</CardTitle>
+                  <CardSubtitle>BUSD 125</CardSubtitle>
+                  <Button disabled={goldenCount === 0} onClick={() => callOpenPortal("2")} color="primary" className="me-2">Open portal</Button>
+                  <Button onClick={() => buyPortal("2")} color="primary">Buy portal</Button>
+                </CardBody>
+              </Card>
+          </Col>
+          <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
+              <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                  {mysticalCount}
+                  <span className="visually-hidden">mystical portals</span>
+                </span>
+                <CardImg top width="80%" src={MysticalPortal} alt="Common Portal" />
+                <CardBody>
+                  <CardTitle style={{color: "white"}}>Mystical Portal</CardTitle>
+                  <CardSubtitle>BUSD 200</CardSubtitle>
+                  <Button disabled={mysticalCount === 0} onClick={() => callOpenPortal("3")} color="primary" className="me-2">Open portal</Button>
+                  <Button onClick={() => buyPortal("3")} color="primary">Buy portal</Button>
+                </CardBody>
+              </Card>
+          </Col>
         </>
       )
     }

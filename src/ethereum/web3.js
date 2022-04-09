@@ -138,6 +138,9 @@ const connectWallet = async () => {
     }
 }
 
+const mintCostCommon = "1";
+const mintCostGolden = "1";
+const mintCostMystical = "1";
+const upgradeCost = "500";
 
-
-export {connectWallet, checkNetwork};
+export {connectWallet, checkNetwork, mintCostCommon, mintCostGolden, mintCostMystical, upgradeCost};
