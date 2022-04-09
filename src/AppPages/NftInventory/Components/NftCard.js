@@ -10,12 +10,12 @@ import {
 } from "reactstrap";
 
 import caveMonkeyImg from "../../../assets/monkeys/CaveMonkey.png";
-import gathererImg from "../../../assets/monkeys/CaveMonkey.png";
+import gathererImg from "../../../assets/monkeys/Gatherer.png";
 import hunterImg from "../../../assets/monkeys/Hunter.png";
-import fireBenderImg from "../../../assets/monkeys/CaveMonkey.png";
-import farmerImg from "../../../assets/monkeys/CaveMonkey.png";
+import fireBenderImg from "../../../assets/monkeys/FireBender.png";
+import farmerImg from "../../../assets/monkeys/Farmer.png";
 import guardianImg from "../../../assets/monkeys/Guardian.png";
-import kingImg from "../../../assets/monkeys/CaveMonkey.png";
+import kingImg from "../../../assets/monkeys/King.png";
 import internImg from "../../../assets/monkeys/Intern.png";
 import cryptoInvestorImg from "../../../assets/monkeys/CryptoInvestor.png";
 import metaMonkeyImg from "../../../assets/monkeys/MetaMonkey.png";

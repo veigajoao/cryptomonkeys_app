@@ -21,6 +21,16 @@ class UpgradeModal extends React.Component {
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.NFTProcessPhase === 1) {
+      this.setState({disabledButtonCancel: true, disabledButtonUpgrade: true});
+    } else if (this.props.NFTProcessPhase === 2) {
+      this.setState({disabledButtonCancel: false, disabledButtonUpgrade: true});
+    } else if (this.props.NFTProcessPhase === 3) {
+      this.setState({disabledButtonCancel: false, disabledButtonUpgrade: true});
+    }
+  }
+
   toggle() {
     this.props.closeModal()
   }
@@ -44,7 +54,6 @@ class UpgradeModal extends React.Component {
         </>
       );
     } else if (this.props.NFTProcessPhase === 1) {
-      this.setState({disabledButtonCancel: true, disabledButtonUpgrade: true});
       modalText = (
         <>
           <Spinner type="spinner-border" color="warning" />
@@ -52,14 +61,12 @@ class UpgradeModal extends React.Component {
         </>
       )
     } else if (this.props.NFTProcessPhase === 2) {
-      this.setState({disabledButtonCancel: false, disabledButtonUpgrade: true});
       modalText = (
         <>
           Congratulations! Your NFT was upgraded to level 2!
         </>
       )
     } else if (this.props.NFTProcessPhase === 3) {
-      this.setState({disabledButtonCancel: false, disabledButtonUpgrade: true});
       modalText = (
         <>
           Looks like something went wrong... Some usual causes are: <br/><br/>
