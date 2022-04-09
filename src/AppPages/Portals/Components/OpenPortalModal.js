@@ -41,6 +41,47 @@ import mysticalCryptoInvestor from "../../../assets/portalVideos/mystical/Crypto
 import mysticalMetaMonkey from "../../../assets/portalVideos/mystical/MetaMonkey.mp4";
 import mysticalCyborg from "../../../assets/portalVideos/mystical/Cyborg.mp4";
 
+const getMonkeyVideo = (monkeyType, portalType) => {
+  let videoMapping = {
+    "1": {
+      "1": commonCaveMonkey,
+      "2": commonGatherer,
+      "3": commonHunter,
+      "4": commonFireBender,
+      "5": commonFarmer,
+      "6": commonGuardian,
+      "7": commonKing,
+      "8": commonIntern,
+      "9": commonCryptoInvestor,
+      "10": commonMetaMonkey,
+      "11": commonCyborg
+    },
+    "2": {
+      "1": goldenCaveMonkey,
+      "2": goldenGatherer,
+      "3": goldenHunter,
+      "4": goldenFireBender,
+      "5": goldenFarmer,
+      "6": goldenGuardian,
+      "7": goldenKing,
+      "8": goldenIntern,
+      "9": goldenCryptoInvestor,
+      "10": goldenMetaMonkey,
+      "11": goldenCyborg
+    },
+    "3": {
+      "5": mysticalFarmer,
+      "6": mysticalGuardian,
+      "7": mysticalKing,
+      "8": mysticalIntern,
+      "9": mysticalCryptoInvestor,
+      "10": mysticalMetaMonkey,
+      "11": mysticalCyborg
+    }
+  };
+  return videoMapping[portalType][monkeyType];
+};
+
 class OpenPortalModal extends React.Component {
   constructor(props) {
     super(props);
