@@ -124,7 +124,6 @@ const connectWallet = async () => {
         window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
         // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
         
-        await addToken();
         return true;
     } else {
         //if on server environment
