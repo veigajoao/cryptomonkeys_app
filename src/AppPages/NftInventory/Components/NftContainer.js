@@ -46,7 +46,6 @@ const NftContainer = () => {
     });
 
     const upgradeNftRequest = async (nftData) => {
-      console.log("a");
       setNFTProcessPhase(0);
       setOpenModal(true);
       setNFTUpgradeData(nftData);
@@ -96,7 +95,7 @@ const NftContainer = () => {
                     <CardTitle style={{color: "white"}}>
                       <Spinner type="grow" color="warning" /> 
                     </CardTitle>
-                    <CardSubtitle style={{color: "white"}}>Loading you collection, please wait</CardSubtitle>
+                    <CardSubtitle style={{color: "white"}}>Loading your collection, please wait</CardSubtitle>
                   </CardBody>
                 </Card>
           </Col>

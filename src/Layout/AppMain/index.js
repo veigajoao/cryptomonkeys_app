@@ -222,6 +222,24 @@ const AppMain = () => {
                 <Route exact path="/nft" component={NftInventory}/>
             </Suspense>
 
+            {/* Unlock BNANAS */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-grid-cy"/>
+                        </div>
+                        <h6 className="mt-3">
+                            Please wait while we load all the Dashboards examples
+                            <small>Because this is a demonstration, we load at once all the Dashboards examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route exact path="/bnana" component={NftInventory}/>
+            </Suspense>
+
 
             <Route exact path="/" render={() => (
                 <Redirect to="/nft"/>

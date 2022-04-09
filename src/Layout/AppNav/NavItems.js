@@ -23,15 +23,15 @@ export const MainNav = [
     content: [
       {
         label: "NFT Inventory",
-        to: "#/pages/login",
+        to: "#/nft",
       },
       {
         label: "Buy NFTs",
-        to: "#/pages/login-boxed",
+        to: "#/portals",
       },
       {
         label: "Withdrawal Bnanas",
-        to: "#/pages/register",
+        to: "#/bnana",
       },
     ],
   },
