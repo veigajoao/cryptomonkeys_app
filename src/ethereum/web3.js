@@ -101,7 +101,6 @@ const checkNetwork = async () => {
 }
 
 const connectWallet = async () => {
-
     let provider;
     //check if code is on client or server side
     if (typeof window !== 'undefined') {
@@ -123,7 +122,8 @@ const connectWallet = async () => {
         window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
         window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
         // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
-        
+
+        addToken();
         return true;
     } else {
         //if on server environment
@@ -142,4 +142,12 @@ const mintCostGolden = "1";
 const mintCostMystical = "1";
 const upgradeCost = "500";
 
-export {connectWallet, checkNetwork, mintCostCommon, mintCostGolden, mintCostMystical, upgradeCost};
+const updateBetaBalance = (addedBalance) => {
+    console.log(window.betaBalance);
+    if (window.betaBalance === undefined) {
+        window.betaBalance = 0
+    }
+    window.betaBalance += addedBalance
+}
+
+export {connectWallet, checkNetwork, mintCostCommon, mintCostGolden, mintCostMystical, upgradeCost, updateBetaBalance};

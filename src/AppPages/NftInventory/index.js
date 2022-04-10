@@ -4,9 +4,6 @@ import React, { useState } from "react";
 import AppHeader from "../../Layout/AppHeader/";
 import AppSidebar from "../../Layout/AppSidebar/";
 
-// Theme Options
-import ThemeOptions from "../../Layout/ThemeOptions/";
-
 // Internal components
 import NftContainer from "./Components/NftContainer";
 
@@ -21,7 +18,6 @@ const Portals = ({ match }) => {
 
   return (
     <>
-      <ThemeOptions />
       <AppHeader forceUpdate={() => forceUpdate()} />
       <div className="app-main">
         <AppSidebar />

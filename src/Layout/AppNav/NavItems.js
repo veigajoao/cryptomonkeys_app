@@ -4,16 +4,16 @@ export const MainNav = [
     label: "Game Modes",
     content: [
       {
-        label: "Farm Mode",
-        to: "#/dashboards/analytics",
+        label: "Farm (Beta)",
+        to: "#/farm",
       },
       {
-        label: "Strategy Mode",
-        to: "#/dashboards/commerce",
+        label: "Strategy (Coming Soon)",
+        to: "#",
       },
       {
-        label: "PVP Mode",
-        to: "#/dashboards/sales",
+        label: "PVP (Coming Soon)",
+        to: "#",
       },
     ],
   },
@@ -30,8 +30,8 @@ export const MainNav = [
         to: "#/portals",
       },
       {
-        label: "Withdrawal Bnanas",
-        to: "#/bnana",
+        label: "Withdrawal Bnanas (Soon)",
+        to: "#/nft",
       },
     ],
   },
@@ -41,23 +41,23 @@ export const MainNav = [
     content: [
       {
         label: "Whitepaper",
-        to: "#/apps/mailbox",
+        to: "https://whitepaper.cryptomonkeys.me/",
       },
       {
         label: "How to play",
-        to: "#/apps/chat",
+        to: "https://whitepaper.cryptomonkeys.me/gameplay-tutorial/introduction",
       },
       {
         label: "Telegram Group",
-        to: "#/apps/faq-section",
+        to: "https://t.me/chatcryptomonkeys",
       },
       {
         label: "Discord",
-        to: "#/apps/faq-section",
+        to: "https://discord.io/CryptoMonkeys",
       },
       {
         label: "Main Page",
-        to: "#/apps/faq-section",
+        to: "https://cryptomonkeys.me/",
       },
     ],
   },

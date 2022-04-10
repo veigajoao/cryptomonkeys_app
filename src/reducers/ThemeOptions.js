@@ -22,6 +22,7 @@ export const SET_COLOR_SCHEME = 'THEME_OPTIONS/SET_COLOR_SCHEME';
 export const SET_BACKGROUND_IMAGE_OPACITY = 'THEME_OPTIONS/SET_BACKGROUND_IMAGE_OPACITY';
 
 export const SET_HEADER_BACKGROUND_COLOR = 'THEME_OPTIONS/SET_HEADER_BACKGROUND_COLOR';
+export const SET_BETA_BNANA_BALANCE = 'ETHEREUM/SET_BETA_BNANA_BALANCE';
 
 
 export const setEnableBackgroundImage = enableBackgroundImage => ({
@@ -109,6 +110,11 @@ export const setBackgroundImage = backgroundImage  => ({
     backgroundImage
 });
 
+export const setBetaBnanaBalance = betaBnanaBalance  => ({
+    type: SET_BETA_BNANA_BALANCE,
+    betaBnanaBalance
+});
+
 export default function reducer(state = {
     backgroundColor: '',
     headerBackgroundColor: '',
@@ -126,6 +132,7 @@ export default function reducer(state = {
     enablePageTitleIcon: true,
     enablePageTitleSubheading: true,
     enablePageTabsAlt: true,
+    betaBnanaBalance: 0,
 }, action) {
     switch (action.type) {
         case SET_ENABLE_BACKGROUND_IMAGE:
@@ -229,7 +236,15 @@ export default function reducer(state = {
                 ...state,
                 backgroundImageOpacity: action.backgroundImageOpacity
             };
+        
+        case SET_BETA_BNANA_BALANCE:
+            return {
+                ...state,
+                betaBnanaBalance: action.betaBnanaBalance
+            };
             default:
+
+        
     }
     return state;
 }

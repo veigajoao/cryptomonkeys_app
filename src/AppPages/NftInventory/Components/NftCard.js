@@ -38,6 +38,23 @@ const getMonkeyName = (code) => {
     return nameDict[code];
 }
 
+const getMonkeyIQ = (monkeyType) => {
+    const IQDict = {
+        "1": "10",
+        "2": "15",
+        "3": "30",
+        "4": "50",
+        "5": "100",
+        "6": "130",
+        "7": "240",
+        "8": "425",
+        "9": "730",
+        "10": "945",
+        "11": "1450"
+    };
+    return IQDict[monkeyType];
+}
+
 const getMonkeyImage = (code) => {
     const imgDict = {
         "1": caveMonkeyImg,
@@ -81,12 +98,10 @@ const getMonkeyRarity = (code) => {
     const rarityColor = rarityColorDict[rarity];
 
     return (
-        <>
             <span className="position-absolute top-0 translate-middle badge rounded-pill" style={{"left": "50%", "fontSize": "1rem", background: rarityColor, color: "black"}}>
                 {rarity}
                 <span className="visually-hidden">rarity level</span>
             </span>
-        </>
     );
 }
 
@@ -100,6 +115,8 @@ const NFTCard = (props) => {
 
     const monkeyRarity = getMonkeyRarity(monkeyType);
 
+    const monkeyIQ = getMonkeyIQ(monkeyType);
+
     return (
         <Col md="4" sm="6" xs="12" style={{display: "flex", justifyContent: "center"}}>
             <Card className="m-2" style={{width: "80%", background: "#240940", color: "white"}}>
@@ -108,6 +125,7 @@ const NFTCard = (props) => {
                 <CardBody>
                     <CardTitle style={{color: "white"}}>{monkeyName}</CardTitle>
                     <CardSubtitle>#{tokenId}</CardSubtitle>
+                    <CardSubtitle>IQ Power: {monkeyIQ}</CardSubtitle>
                     <CardSubtitle>Level: {monkeyLevel}</CardSubtitle>
                     <Button onClick={upgradeNftRequest} disabled={monkeyLevel === "2"} color="primary">Upgrade monkey</Button>
                 </CardBody>

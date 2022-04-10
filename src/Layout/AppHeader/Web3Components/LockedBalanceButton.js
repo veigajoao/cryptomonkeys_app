@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
-
 import { Button } from 'reactstrap';
 
 import lockedBnanaLogo from "../../../assets/metaMask/bnanaCase.png";
 
-const LockedBalanceButton = () => {
+const LockedBalanceButton = (props) => {
     
     const [balance, setBalance] = useState("none");
 
     const fetchBalance = async () => {
         if (window.isUserWallet) {
-            const walletHash = await window.web3Instance.eth.getAccounts();
-            const bnanaBalance = await window.bnanaContract.methods.balanceOf(walletHash[0]).call();
-            setBalance(window.web3Instance.utils.fromWei(bnanaBalance, "ether"));
+            // const walletHash = await window.web3Instance.eth.getAccounts();
+            // const bnanaBalance = await window.bnanaContract.methods.balanceOf(walletHash[0]).call();
+            // setBalance(window.web3Instance.utils.fromWei(bnanaBalance, "ether"));
+            if (window.betaBalance === undefined) {
+                setBalance(0);
+            } else {
+                setBalance(window.betaBalance);
+            }
+            
         } else {
             setBalance("none");           
         }
     };
 
     useEffect(() => {
-        if (balance === "none") {
-            fetchBalance();
-        }
+        setTimeout(
+            fetchBalance, 1500
+        )
     })
 
     let buttonElement;
@@ -43,4 +48,4 @@ const LockedBalanceButton = () => {
     )
 };
 
-export default LockedBalanceButton;
+export default LockedBalanceButton

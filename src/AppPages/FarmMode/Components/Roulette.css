@@ -1,0 +1,51 @@
+@keyframes cave-transition {
+    0%, 100% {background-image: url("../../../assets/establishments/Cave.jpg");}
+    10% {background-image: url("../../../assets/establishments/Forest.jpg");}
+    20% {background-image: url("../../../assets/establishments/Cave.jpg");}
+    30% {background-image: url("../../../assets/establishments/Forest.jpg");}
+    40% {background-image: url("../../../assets/establishments/Cave.jpg");}
+    50% {background-image: url("../../../assets/establishments/Forest.jpg");}
+    60% {background-image: url("../../../assets/establishments/Cave.jpg");}
+    70% {background-image: url("../../../assets/establishments/Forest.jpg");}
+    80% {background-image: url("../../../assets/establishments/Cave.jpg");}
+    90% {background-image: url("../../../assets/establishments/Forest.jpg");}
+}
+
+@keyframes farm-transition {
+    0%, 100% {background-image: url("../../../assets/establishments/Farm.jpg");}
+    10% {background-image: url("../../../assets/establishments/Castle.jpg");}
+    20% {background-image: url("../../../assets/establishments/Farm.jpg");}
+    30% {background-image: url("../../../assets/establishments/Castle.jpg");}
+    40% {background-image: url("../../../assets/establishments/Farm.jpg");}
+    50% {background-image: url("../../../assets/establishments/Castle.jpg");}
+    60% {background-image: url("../../../assets/establishments/Farm.jpg");}
+    70% {background-image: url("../../../assets/establishments/Castle.jpg");}
+    80% {background-image: url("../../../assets/establishments/Farm.jpg");}
+    90% {background-image: url("../../../assets/establishments/Castle.jpg");}
+}
+
+@keyframes office-transition {
+    0%, 100% {background-image: url("../../../assets/establishments/Office1.jpg");}
+    10% {background-image: url("../../../assets/establishments/Office2.jpg");}
+    20% {background-image: url("../../../assets/establishments/Office1.jpg");}
+    30% {background-image: url("../../../assets/establishments/Office2.jpg");}
+    40% {background-image: url("../../../assets/establishments/Office1.jpg");}
+    50% {background-image: url("../../../assets/establishments/Office2.jpg");}
+    60% {background-image: url("../../../assets/establishments/Office1.jpg");}
+    70% {background-image: url("../../../assets/establishments/Office2.jpg");}
+    80% {background-image: url("../../../assets/establishments/Office1.jpg");}
+    90% {background-image: url("../../../assets/establishments/Office2.jpg");}
+}
+
+@keyframes space-transition {
+    0%, 100% {background-image: url("../../../assets/establishments/Space.jpg");}
+    10% {background-image: url("../../../assets/establishments/Mars.jpg");}
+    20% {background-image: url("../../../assets/establishments/Space.jpg");}
+    30% {background-image: url("../../../assets/establishments/Mars.jpg");}
+    40% {background-image: url("../../../assets/establishments/Space.jpg");}
+    50% {background-image: url("../../../assets/establishments/Mars.jpg");}
+    60% {background-image: url("../../../assets/establishments/Space.jpg");}
+    70% {background-image: url("../../../assets/establishments/Mars.jpg");}
+    80% {background-image: url("../../../assets/establishments/Space.jpg");}
+    90% {background-image: url("../../../assets/establishments/Mars.jpg");}
+}
