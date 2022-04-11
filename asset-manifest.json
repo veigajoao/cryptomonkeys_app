@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/cryptomonkeys_app/static/css/main.f968ae9e.css",
-    "main.js": "/cryptomonkeys_app/static/js/main.842b3667.js",
+    "main.css": "/cryptomonkeys_app/static/css/main.30389c78.css",
+    "main.js": "/cryptomonkeys_app/static/js/main.6c367b0c.js",
     "static/js/967.b7abbf2f.chunk.js": "/cryptomonkeys_app/static/js/967.b7abbf2f.chunk.js",
     "static/js/780.875ff60f.chunk.js": "/cryptomonkeys_app/static/js/780.875ff60f.chunk.js",
     "static/js/756.924e627d.chunk.js": "/cryptomonkeys_app/static/js/756.924e627d.chunk.js",
@@ -38,7 +38,7 @@
     "static/js/299.2cdf42ba.chunk.js": "/cryptomonkeys_app/static/js/299.2cdf42ba.chunk.js",
     "static/js/60.b31efe88.chunk.js": "/cryptomonkeys_app/static/js/60.b31efe88.chunk.js",
     "static/js/923.6d525219.chunk.js": "/cryptomonkeys_app/static/js/923.6d525219.chunk.js",
-    "static/js/773.0b4b3730.chunk.js": "/cryptomonkeys_app/static/js/773.0b4b3730.chunk.js",
+    "static/js/773.71d6cc6c.chunk.js": "/cryptomonkeys_app/static/js/773.71d6cc6c.chunk.js",
     "static/js/685.c1459529.chunk.js": "/cryptomonkeys_app/static/js/685.c1459529.chunk.js",
     "static/media/bnanaCase.png": "/cryptomonkeys_app/static/media/bnanaCase.2b12ec1a5160e2ce599e.png",
     "static/media/Guardian.mp4": "/cryptomonkeys_app/static/media/Guardian.6e0a79ee10c8714bd488.mp4",
@@ -106,8 +106,8 @@
     "static/media/Linearicons-Free.woff2?w118d": "/cryptomonkeys_app/static/media/Linearicons-Free.857c65d6452680b4f3b1.woff2",
     "static/media/abstract7.jpg": "/cryptomonkeys_app/static/media/abstract7.b0a46595a7b8711385f1.jpg",
     "index.html": "/cryptomonkeys_app/index.html",
-    "main.f968ae9e.css.map": "/cryptomonkeys_app/static/css/main.f968ae9e.css.map",
-    "main.842b3667.js.map": "/cryptomonkeys_app/static/js/main.842b3667.js.map",
+    "main.30389c78.css.map": "/cryptomonkeys_app/static/css/main.30389c78.css.map",
+    "main.6c367b0c.js.map": "/cryptomonkeys_app/static/js/main.6c367b0c.js.map",
     "967.b7abbf2f.chunk.js.map": "/cryptomonkeys_app/static/js/967.b7abbf2f.chunk.js.map",
     "780.875ff60f.chunk.js.map": "/cryptomonkeys_app/static/js/780.875ff60f.chunk.js.map",
     "756.924e627d.chunk.js.map": "/cryptomonkeys_app/static/js/756.924e627d.chunk.js.map",
@@ -144,11 +144,11 @@
     "299.2cdf42ba.chunk.js.map": "/cryptomonkeys_app/static/js/299.2cdf42ba.chunk.js.map",
     "60.b31efe88.chunk.js.map": "/cryptomonkeys_app/static/js/60.b31efe88.chunk.js.map",
     "923.6d525219.chunk.js.map": "/cryptomonkeys_app/static/js/923.6d525219.chunk.js.map",
-    "773.0b4b3730.chunk.js.map": "/cryptomonkeys_app/static/js/773.0b4b3730.chunk.js.map",
+    "773.71d6cc6c.chunk.js.map": "/cryptomonkeys_app/static/js/773.71d6cc6c.chunk.js.map",
     "685.c1459529.chunk.js.map": "/cryptomonkeys_app/static/js/685.c1459529.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f968ae9e.css",
-    "static/js/main.842b3667.js"
+    "static/css/main.30389c78.css",
+    "static/js/main.6c367b0c.js"
   ]
 }
