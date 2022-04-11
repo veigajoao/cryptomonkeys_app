@@ -4,8 +4,8 @@ export const MainNav = [
     label: "Game Modes",
     content: [
       {
-        label: "Farm (Beta)",
-        to: "#/farm",
+        label: "Farm (Beta Soon)",
+        to: "#",
       },
       {
         label: "Strategy (Coming Soon)",

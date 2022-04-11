@@ -13,6 +13,8 @@ import {
 import NFTCard from "./NftCard";
 import UpgradeModal from "./UpgradeModal";
 
+import { upgradeCost } from "../../../ethereum/web3";
+
 import metaMaskLogo from "../../../assets/metaMask/MetaMask.png";
 
 const NftContainer = () => {
@@ -60,7 +62,7 @@ const NftContainer = () => {
       const walletHash = await window.web3Instance.eth.getAccounts();
       console.log(walletHash);
       try {
-        await window.bnanaContract.methods.approve(window.nftContract.options.address, window.web3Instance.utils.toWei("1500", "ether")).send({
+        await window.bnanaContract.methods.approve(window.nftContract.options.address, window.web3Instance.utils.toWei(upgradeCost, "ether")).send({
           from: walletHash[0]
         });
         await window.nftContract.methods.upgradeNft(walletHash[0], NFTUpgradeData.tokenId).send({
@@ -116,9 +118,9 @@ const NftContainer = () => {
     } else {
       NFTContent = [];
       for (const NFT of NFTList) {
-        // if (!NFT.nftData[3]) {
-        //   continue;
-        // }
+        if (!NFT.nftData[3]) {
+          continue;
+        }
         let serialNumber = (parseInt(NFT.nftIndex) + 7834).toString();
         NFTContent.push(
           <NFTCard upgradeNftRequest={() => upgradeNftRequest({tokenId: NFT.nftIndex, nftData: NFT.nftData})} key={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber}/>

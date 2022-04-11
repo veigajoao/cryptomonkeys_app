@@ -18,7 +18,7 @@ const abiBusd = contractFileBananacoin.abi;
 const bnanaAddress = "0xf9b27685bfaAF96AaedffD45DA69BF7F5d0ea07D";
 
 const abiNft = contractFileNft.abi;
-const nftAddress = "0x700Ab8d2b5Ecc5d5aE2Ae6D634656F63aEF5040B";
+const nftAddress = "0x9e2DD3813c598b6Ae26305e42011098432D3B08b";
 
 const bscId = '0x38';
 const bscRpcurls = [
@@ -102,9 +102,11 @@ const checkNetwork = async () => {
 
 const connectWallet = async () => {
     let provider;
+    await window.ethereum.enable();
     //check if code is on client or server side
     if (typeof window !== 'undefined') {
         provider = await detectEthereumProvider();
+        console.log(`provider: ${provider}`)
         if (provider == null) {
             provider = 'undefined';
         }
@@ -115,6 +117,7 @@ const connectWallet = async () => {
     if (provider !== 'undefined') {
         //if on client environment
         window.web3Instance = new Web3(provider);
+        window.web3Instance.eth.defaultAccount = window.web3Instance.eth.accounts[0]
         window.networkSuccess = await checkNetwork();
         window.isUserWallet = true;
         // window.whitelistContract = new window.web3Instance.eth.Contract(abiWhitelist, whitelistAddress);
@@ -137,10 +140,10 @@ const connectWallet = async () => {
     }
 }
 
-const mintCostCommon = "1";
-const mintCostGolden = "1";
-const mintCostMystical = "1";
-const upgradeCost = "500";
+const mintCostCommon = "500";
+const mintCostGolden = "950";
+const mintCostMystical = "1250";
+const upgradeCost = "3000";
 
 const updateBetaBalance = (addedBalance) => {
     console.log(window.betaBalance);

@@ -13,6 +13,7 @@ import {
 import NFTCard from "./NftCard";
 import Roulette from "./Roulette";
 import GameModal from "./GameModal";
+import InstructionsModal from "./InstructionsModal";
 
 import { updateBetaBalance } from "../../../ethereum/web3";
 
@@ -26,12 +27,14 @@ const GameContainer = (props) => {
       monkeyType: "1",
       animationDuration: "0s",
       shouldAnimate: false,
-      result: 1
+      result: 3
     });
 
     const [openModal, setOpenModal] = useState(false);
     const [won, setWon] = useState(false);
     const [wonValue, setWonValue] = useState(0);
+
+    const [openInstructionsModal, setOpenInstructionsModal] = useState(true);
 
     const fetchData = async () => {
       if (window.isUserWallet !== true) {
@@ -185,6 +188,7 @@ const GameContainer = (props) => {
           </CSSTransition>
         </TransitionGroup>
         <GameModal closeModal={() => setOpenModal(false)} open={openModal} won={won} wonValue={wonValue}/>
+        <InstructionsModal closeModal={() => setOpenInstructionsModal(false)} open={openInstructionsModal}/>
       </Fragment>
     );
 }

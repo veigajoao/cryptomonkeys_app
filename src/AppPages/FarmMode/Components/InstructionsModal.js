@@ -7,7 +7,7 @@ import {
   ModalFooter
 } from "reactstrap";
 
-class GameModal extends React.Component {
+class InstructionsModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,33 +23,16 @@ class GameModal extends React.Component {
 
   render() {
 
-    let modalText;
-    if (this.props.won) {
-      modalText = (
-        <>
-          Congratulations, you just won {this.props.wonValue} $BNANA! <br/>
-          Remember this is a beta version, your balance will appear in 
-          your account only as long as your session lasts. <br/>
-          Get ready for the real game launch!
-        </>
-      );
-    } else {
-      modalText = (
-        <>
-          Unfortunatelly your monkey is not ready to farm at this station :( <br/>
-          Upgrade him to level 2 so that you can earn $BNANA even if you land at this spot. <br/>
-          Remember this is a beta version, your balance will appear in 
-          your account only as long as your session lasts. <br/>
-          Get ready for the real game launch!
-        </>
-      )
-    } 
-
     return (
         <Modal isOpen={this.props.open} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
           <ModalHeader style={{background: "#561473", color: "white", borderColor: "#561473"}}  toggle={this.toggle}>Game result</ModalHeader>
           <ModalBody style={{background: "#6C32A6", color: "white"}}>
-            {modalText}
+            Use the time machine to bring your monkey to the closest workstation. <br/>
+            Each NFT monkey in your collection is able to work 3 times a day, 
+            with an eight hour interval (complying with union regulations). <br/>
+            The time machine brings your monkey to a random location, there's a 20% chance that the time machine will bring your monkey to a level 2 workstation.
+            If that happens, you'll get 6 times the rewards. But beware, only level 2 monkeys are able to perform these task,
+            if your monkey is level 1 and lands at a level 2 workstation, you'll get no rewards...
           </ModalBody>
           <ModalFooter style={{background: "#561473", color: "white", borderColor: "#561473"}}>
             <Button disabled={this.state.disabledButtonUpgrade} color="primary" onClick={this.toggle}>
@@ -61,4 +44,4 @@ class GameModal extends React.Component {
   }
 }
 
-export default GameModal;
+export default InstructionsModal;

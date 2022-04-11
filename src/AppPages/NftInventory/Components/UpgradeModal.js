@@ -8,6 +8,8 @@ import {
   Spinner
 } from "reactstrap";
 
+import { upgradeCost } from "../../../ethereum/web3";
+
 class UpgradeModal extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,7 @@ class UpgradeModal extends React.Component {
       modalText = (
         <>
           Are you sure you want to upgrade your NFT of type {this.props.monkeyType} to level 2?
-          Upgrade cost is {"X"} $BNANA.
+          Upgrade cost is {upgradeCost} $BNANA.
         </>
       );
     } else if (this.props.NFTProcessPhase === 1) {

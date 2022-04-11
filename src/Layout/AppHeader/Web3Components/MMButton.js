@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button } from 'reactstrap';
 
@@ -28,6 +28,9 @@ const MMButton = (props) => {
         );
     }
 
+    useEffect(() => {
+        fetchAccount();
+    })
 
     let buttonElement;
     if (account !== "none" && account !== undefined) {

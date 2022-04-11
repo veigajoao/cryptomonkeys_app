@@ -44,20 +44,21 @@ import Office1 from "../../../assets/establishments/Office1.jpg";
 import Office2 from "../../../assets/establishments/Office2.jpg";
 import Space from "../../../assets/establishments/Space.jpg";
 import Mars from "../../../assets/establishments/Mars.jpg";
+import TimeMachine from "../../../assets/establishments/timeMachine.jpg";
 
 const getEstablishments = (monkeyType) => {
     let establishmentsMap = {
-        "1": ["cave-transition", Cave, Forest],
-        "2": ["cave-transition", Cave, Forest],
-        "3": ["cave-transition", Cave, Forest],
-        "4": ["cave-transition", Cave, Forest],
-        "5": ["farm-transition", Farm, Castle],
-        "6": ["farm-transition", Farm, Castle],
-        "7": ["farm-transition", Farm, Castle],
-        "8": ["office-transition", Office1, Office2],
-        "9": ["office-transition", Office1, Office2],
-        "10": ["space-transition", Space, Mars],
-        "11": ["space-transition", Space, Mars]
+        "1": ["cave-transition", Cave, Forest, TimeMachine],
+        "2": ["cave-transition", Cave, Forest, TimeMachine],
+        "3": ["cave-transition", Cave, Forest, TimeMachine],
+        "4": ["cave-transition", Cave, Forest, TimeMachine],
+        "5": ["farm-transition", Farm, Castle, TimeMachine],
+        "6": ["farm-transition", Farm, Castle, TimeMachine],
+        "7": ["farm-transition", Farm, Castle, TimeMachine],
+        "8": ["office-transition", Office1, Office2, TimeMachine],
+        "9": ["office-transition", Office1, Office2, TimeMachine],
+        "10": ["space-transition", Space, Mars, TimeMachine],
+        "11": ["space-transition", Space, Mars, TimeMachine]
     };
     return establishmentsMap[monkeyType];
 }
@@ -70,19 +71,17 @@ const Roulette = (props) => {
 
     let animationName = shouldAnimate ? establishments[0] : "noAnimation";
 
-    // let monkeyImage = getMonkeyImage(monkeyType);
-
     return (
-        <Col xs="12" style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
-            <Card className="mb-1 mt-2" style={
+        <Col xs="8" style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
+            <Card className="mb-1 mt-2 border border-3" style={
                 {animationName: animationName, animationDuration: animationDuration, 
                 animationIterationCount: "infinite",
-                width: "80%", backgroundImage: `url(${establishments[result]})`,
-                backgroundSize: "cover", color: "white"}}
+                backgroundImage: `url(${establishments[result]})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover", color: "white", borderColor: "rgb(200,200,200, 0.5)", width: "50%"}}
             >
                 <CardBody>
-                    <div style={{width: "100%", height: "350px"}}>
-
+                    <div style={{ height: "270px"}}>
                     </div>
                 </CardBody>
             </Card>
