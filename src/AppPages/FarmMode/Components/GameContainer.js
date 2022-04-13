@@ -109,10 +109,11 @@ const GameContainer = (props) => {
     };
 
     const openGame = (NFT) => {
+      console.log(NFT);
       setOpenRouletteModal(true);
       setRouletteTokenData(NFT);
-      setRouletteMonkeyType(NFT.nftData[1]);
-      setRouletteMonkeyLevel(NFT.nftData[0]);
+      setRouletteMonkeyType(NFT.nftData[0]);
+      setRouletteMonkeyLevel(NFT.nftData[1]);
       setGameStatus("preGame");
     }
 
@@ -177,11 +178,11 @@ const GameContainer = (props) => {
               <Col md="12">
                 <Card className="main-card mb-3 mt-3" style={{background: "#561473"}}>
                   <CardBody>
-                    <CardTitle style={{color: "white"}}>Time to farm $BNANA</CardTitle>
+                    <CardTitle style={{color: "white"}}>
+                      Time to farm $BNANA <br/>
+                      Select your NFTs and farm with them!
+                    </CardTitle>
                     <div className="divider" />
-                    <Row className="text-center mt-3 gx-0">
-                        <Roulette monkeyType={rouletteVars.monkeyType} animationDuration={rouletteVars.animationDuration} shouldAnimate={rouletteVars.shouldAnimate} result={rouletteVars.result}/>
-                    </Row>
                   </CardBody>
                 </Card>
               </Col>

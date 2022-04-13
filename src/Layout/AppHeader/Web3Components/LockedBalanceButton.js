@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from 'reactstrap';
 
-import lockedBnanaLogo from "../../../assets/metaMask/bnanaCase.png";
+import lockedBnanaLogo from "../../../assets/metaMask/bnanaCage.png";
 
 const LockedBalanceButton = (props) => {
     

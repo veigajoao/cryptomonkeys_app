@@ -37,7 +37,17 @@ import Office2Name from "../../../assets/roulette/place_names/company.png";
 import SpaceName from "../../../assets/roulette/place_names/spaceship.png";
 import MarsName from "../../../assets/roulette/place_names/mars.png";
 
-import SampleMonkey from "../../../assets/roulette/monkeys/King.png"
+import CaveHead from "../../../assets/roulette/monkeys/CaveMonkey.png"
+import GathererHead from "../../../assets/roulette/monkeys/Gatherer.png"
+import HunterHead from "../../../assets/roulette/monkeys/Hunter.png"
+import FireBenderHead from "../../../assets/roulette/monkeys/FireBender.png"
+import FarmerHead from "../../../assets/roulette/monkeys/Farmer.png"
+import GuardianHead from "../../../assets/roulette/monkeys/Guardian.png"
+import KingHead from "../../../assets/roulette/monkeys/King.png"
+import InternHead from "../../../assets/roulette/monkeys/Intern.png"
+import CryptoInvestorHead from "../../../assets/roulette/monkeys/CryptoInvestor.png"
+import MetaMonkeyHead from "../../../assets/roulette/monkeys/MetaMonkey.png"
+import CyborgHead from "../../../assets/roulette/monkeys/Cyborg.png"
 
 import Cave from "../../../assets/establishments/Cave.jpg";
 import Forest from "../../../assets/establishments/Forest.jpg";
@@ -50,17 +60,17 @@ import Mars from "../../../assets/establishments/Mars.jpg";
 
 const getEstablishments = (monkeyType) => {
     let establishmentsMap = {
-        "1": ["cave-transition", Cave, Forest, CaveName, ForestName],
-        "2": ["cave-transition", Cave, Forest, CaveName, ForestName],
-        "3": ["cave-transition", Cave, Forest, CaveName, ForestName],
-        "4": ["cave-transition", Cave, Forest, CaveName, ForestName],
-        "5": ["cave-transition", Farm, Castle, FarmName, CastleName],
-        "6": ["cave-transition", Farm, Castle, FarmName, CastleName],
-        "7": ["cave-transition", Farm, Castle, FarmName, CastleName],
-        "8": ["office-transition", Office1, Office2, Office1Name, Office2Name],
-        "9": ["office-transition", Office1, Office2, Office1Name, Office2Name],
-        "10": ["space-transition", Space, Mars, SpaceName, MarsName],
-        "11": ["space-transition", Space, Mars, SpaceName, MarsName],
+        "1": [CaveHead, Cave, Forest, CaveName, ForestName],
+        "2": [GathererHead, Cave, Forest, CaveName, ForestName],
+        "3": [HunterHead, Cave, Forest, CaveName, ForestName],
+        "4": [FireBenderHead, Cave, Forest, CaveName, ForestName],
+        "5": [FarmerHead, Farm, Castle, FarmName, CastleName],
+        "6": [GuardianHead, Farm, Castle, FarmName, CastleName],
+        "7": [KingHead, Farm, Castle, FarmName, CastleName],
+        "8": [InternHead, Office1, Office2, Office1Name, Office2Name],
+        "9": [CryptoInvestorHead, Office1, Office2, Office1Name, Office2Name],
+        "10": [MetaMonkeyHead, Space, Mars, SpaceName, MarsName],
+        "11": [CyborgHead, Space, Mars, SpaceName, MarsName],
     };
     return establishmentsMap[monkeyType];
 }
@@ -120,7 +130,7 @@ const RouletteModal = (props) => {
                         height: "90px"
                     }}
                 >
-                    <img style={{height: "200px"}} src={SampleMonkey} alt={""}/>
+                    <img style={{height: "200px"}} src={establishments[0]} alt={""}/>
             
                 </div>
 
