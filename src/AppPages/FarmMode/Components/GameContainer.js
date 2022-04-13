@@ -14,6 +14,7 @@ import NFTCard from "./NftCard";
 import Roulette from "./Roulette";
 import GameModal from "./GameModal";
 import InstructionsModal from "./InstructionsModal";
+import RouletteModal from "./RouletteModal";
 
 import { updateBetaBalance } from "../../../ethereum/web3";
 
@@ -34,7 +35,12 @@ const GameContainer = (props) => {
     const [won, setWon] = useState(false);
     const [wonValue, setWonValue] = useState(0);
 
-    const [openInstructionsModal, setOpenInstructionsModal] = useState(true);
+    const [openRouletteModal, setOpenRouletteModal] = useState(false);
+    const [rouletteMonkeyType, setRouletteMonkeyType] = useState("1");
+    const [rouletteMonkeyLevel, setRouletteMonkeyLevel] = useState("1");
+    const [rouletteTokenData, setRouletteTokenData] = useState({});
+    const [gameStatus, setGameStatus] = useState("preGame");
+    const [timer, setTimer] = useState("");
 
     const fetchData = async () => {
       if (window.isUserWallet !== true) {
@@ -59,26 +65,19 @@ const GameContainer = (props) => {
       }
     });
 
-    const playGame = async (tokenData) => {
-      window.scrollTo(0, 0);
-      setRouletteVars({
-        tokenId: tokenData.nftIndex,
-        monkeyType: tokenData.nftData[0],
-        animationDuration: "3s",
-        shouldAnimate: true,
-        result: 1
-      });
+    const playGame = async () => {
+
+      const tokenData = rouletteTokenData;
+      setGameStatus("playing");;
 
       //substitute for blockchain call later
       let seed = Math.random();
       let result = seed > 0.8 ? 2 : 1;
       let baseFarm = 1;
-      
-      console.log(props.bnanaBalance);
 
       if (tokenData.nftData[1] === "2") {
         setWon(true);
-        let wonAmmount = result === 2 ? 2 * baseFarm : baseFarm;
+        let wonAmmount = result === 2 ? 6 * baseFarm : baseFarm;
         setWonValue(wonAmmount);
         updateBetaBalance(wonAmmount);
 
@@ -93,26 +92,29 @@ const GameContainer = (props) => {
       }
       
       setTimeout(() => {
-        setRouletteVars({
-          tokenId: tokenData.nftIndex,
-          monkeyType: tokenData.nftData[0],
-          animationDuration: "5s",
-          shouldAnimate: true,
-          result: 1
-        });
-      }, 5000);
-      setTimeout(() => {
-        setRouletteVars({
-          tokenId: tokenData.nftIndex,
-          monkeyType: tokenData.nftData[0],
-          animationDuration: "3s",
-          shouldAnimate: false,
-          result: result
-        });
-        setOpenModal(true);
-      }, 7500);
 
+        if (result === 1) {
+          setGameStatus("game1won");
+        } else if (result === 2) {
+          setGameStatus("game2won");
+        }
+      
+
+        setTimeout(() => {
+          setOpenModal(true);
+        }, 1000);
+
+      }, 5000);
+      
     };
+
+    const openGame = (NFT) => {
+      setOpenRouletteModal(true);
+      setRouletteTokenData(NFT);
+      setRouletteMonkeyType(NFT.nftData[1]);
+      setRouletteMonkeyLevel(NFT.nftData[0]);
+      setGameStatus("preGame");
+    }
 
     let NFTCards;
     if (window.isUserWallet !== true) {
@@ -161,7 +163,7 @@ const GameContainer = (props) => {
         // }
         let serialNumber = (parseInt(NFT.nftIndex) + 7834).toString();
         NFTCards.push(
-          <NFTCard key={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} playGame={() => playGame(NFT)}/>
+          <NFTCard key={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} playGame={() => openGame(NFT)}/>
         );
       }
     }
@@ -188,7 +190,8 @@ const GameContainer = (props) => {
           </CSSTransition>
         </TransitionGroup>
         <GameModal closeModal={() => setOpenModal(false)} open={openModal} won={won} wonValue={wonValue}/>
-        <InstructionsModal closeModal={() => setOpenInstructionsModal(false)} open={openInstructionsModal}/>
+        {/* <InstructionsModal closeModal={() => setOpenInstructionsModal(false)} open={openInstructionsModal}/> */}
+        <RouletteModal closeModal={() => setOpenRouletteModal(false)} isOpen={openRouletteModal} monkeyType={rouletteMonkeyType} levelNft={rouletteMonkeyLevel} gameStatus={gameStatus} playGame={playGame}/>
       </Fragment>
     );
 }

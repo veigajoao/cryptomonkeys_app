@@ -62,8 +62,14 @@ const BuyBoxes = () => {
     const buyPortal = async (rarity) => {
       const mintCost = getMintCost(rarity);
       const walletHash = await window.web3Instance.eth.getAccounts();
-      await window.bnanaContract.methods.approve(window.nftContract.options.address, window.web3Instance.utils.toWei(mintCost, "ether")).send({from: walletHash[0]});
-      await window.nftContract.methods.mintNft(walletHash[0], rarity).send({from: walletHash[0]});
+      await window.bnanaContract.methods.approve(window.nftContract.options.address, window.web3Instance.utils.toWei(mintCost, "ether")).send({
+        from: walletHash[0],
+        gas: '100000'
+      });
+      await window.nftContract.methods.mintNft(walletHash[0], rarity).send({
+        from: walletHash[0],
+        gas: '100000'
+      });
       fetchData();
     }
 
@@ -71,7 +77,11 @@ const BuyBoxes = () => {
       setTokenObject("approve");
       setOpenModal(true);
       const walletHash = await window.web3Instance.eth.getAccounts();
-      await window.nftContract.methods.openNftBox(tokenObject.nftIndex).send({from: walletHash[0]});
+      console.log(tokenObject);
+      await window.nftContract.methods.openNftBox(tokenObject.nftIndex).send({
+        from: walletHash[0],
+        gas: '100000'
+      });
       setTokenObject(tokenObject);
       fetchData();
     }
@@ -79,6 +89,9 @@ const BuyBoxes = () => {
     const callOpenPortal = (rarityType) => {
       let tokenObject;
       for (let item of NFTList) {
+        if (item.nftData[3]) {
+          continue
+        }
         if (item.nftData[4] === rarityType ) {
           tokenObject = item;
         }
@@ -133,7 +146,7 @@ const BuyBoxes = () => {
         <>
           <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
               <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"fontSize": "1.25rem"}}>
                   {commonCount}
                   <span className="visually-hidden">common portals</span>
                 </span>
@@ -148,7 +161,7 @@ const BuyBoxes = () => {
           </Col>
           <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
               <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"fontSize": "1.25rem"}}>
                   {goldenCount}
                   <span className="visually-hidden">golden portals</span>
                 </span>
@@ -163,7 +176,7 @@ const BuyBoxes = () => {
           </Col>
           <Col xs="12" md="4" style={{display: "flex", justifyContent: "center"}}>
               <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"font-size": "1.25rem"}}>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{"fontSize": "1.25rem"}}>
                   {mysticalCount}
                   <span className="visually-hidden">mystical portals</span>
                 </span>

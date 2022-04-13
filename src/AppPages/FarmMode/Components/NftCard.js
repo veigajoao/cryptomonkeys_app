@@ -59,9 +59,9 @@ const getMonkeyRarity = (code) => {
 
 const NFTCard = (props) => {
 
+    const [isCounterSet, setIsCounterSet] = useState(false);
     const [counter, setCounter] = useState(0);
     const [timeWork, setTimeWork] = useState(0);
-    const [missingTime, setMissingTime] = useState(0);
     const [canWork, setCanWork] = useState(true);
 
     const { monkeyType, monkeyLevel, tokenId, playGame } = props;
@@ -86,12 +86,14 @@ const NFTCard = (props) => {
 
     useEffect(() => {
         if (!canWork) {
-            let now = new Date()
-            let nowSeconds = now.getTime() / 1000
-            setMissingTime(parseInt(timeWork - nowSeconds));
-            setCounter(counter + 1);
+            if (!isCounterSet) {
+                setIsCounterSet(true);
+                setInterval(() => {
+                    setCounter(counter + 1);
+                }, 1000);
+            }
         }
-    }, [timeWork, canWork, missingTime, counter])
+    }, [timeWork, canWork, counter, isCounterSet])
 
     let workStatus;
     if (canWork) {
@@ -99,6 +101,11 @@ const NFTCard = (props) => {
             <>Ready to work</>
         )
     } else {
+        let now = new Date()
+        let nowSeconds = now.getTime() / 1000
+
+        let missingTime = timeWork - nowSeconds;
+
         let hours = parseInt(missingTime / 3600);
         let minutes = parseInt((missingTime % 3600) / 60);
         let seconds = parseInt(missingTime % 60);

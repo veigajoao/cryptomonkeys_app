@@ -63,12 +63,15 @@ const NftContainer = () => {
       console.log(walletHash);
       try {
         await window.bnanaContract.methods.approve(window.nftContract.options.address, window.web3Instance.utils.toWei(upgradeCost, "ether")).send({
-          from: walletHash[0]
+          from: walletHash[0],
+          gas: '100000'
         });
         await window.nftContract.methods.upgradeNft(walletHash[0], NFTUpgradeData.tokenId).send({
-          from: walletHash[0]
+          from: walletHash[0],
+          gas: '100000'
         });
         setNFTProcessPhase(2);
+        fetchData();
       } catch (err) {
         console.log(err)
         setNFTProcessPhase(3);

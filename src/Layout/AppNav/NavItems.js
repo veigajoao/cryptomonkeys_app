@@ -33,6 +33,18 @@ export const MainNav = [
         label: "Withdrawal Bnanas (Soon)",
         to: "#/nft",
       },
+      {
+        label: "Marketplace (Soon)",
+        to: "#",
+      },
+      {
+        label: "Staking (Soon)",
+        to: "#",
+      },
+      {
+        label: "Breeding (Soon)",
+        to: "#",
+      },
     ],
   },
   {

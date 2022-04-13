@@ -4,7 +4,7 @@
   "private": true,
   "description": "ArchitectUI - Bootstrap 5 Premium Admin Dashboard Template",
   "author": "DashboardPack.com",
-  "homepage": "https://veigajoao.github.io/cryptomonkeys_app/",
+  "homepage": "https://game.cryptomonkeys.me",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dpackdev/architectui-react-pro"
@@ -145,8 +145,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "deploy2": "gh-pages build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

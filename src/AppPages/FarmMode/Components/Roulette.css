@@ -1,4 +1,123 @@
-@keyframes cave-transition {
+.box-shadow-est {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.deactive-roulette {
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+}
+
+.active-roulette {
+    background: rgb(51,0,51);
+    background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+}
+
+.normal-roulette {
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+}
+
+@keyframes not-won {
+    0%, 100% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+}
+
+@keyframes game-won {
+    0%, 100% {
+        background: rgb(51,0,51);
+    background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+}
+
+@keyframes lvl1_transition {
+    0%, 100% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    10% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    20% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    30% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    40% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    50% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    60% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    70% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    80% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    90% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+}
+
+@keyframes lvl2_transition {
+    0%, 100% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    10% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    20% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    30% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    40% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    50% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    60% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    70% {
+        background: rgb(0,0,0);
+        background: radial-gradient(circle, rgba(0,0,0,1) 34%, rgba(51,0,51,1) 65%)
+    }
+    80% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+    90% {
+        background: rgb(51,0,51);
+        background: linear-gradient(229deg, rgba(51,0,51,1) 3%, rgba(215,255,0,1) 65%);
+    }
+}
+
+/* @keyframes cave-transition {
     0%, 100% {background-image: url("../../../assets/establishments/Cave.jpg");}
     10% {background-image: url("../../../assets/establishments/Forest.jpg");}
     20% {background-image: url("../../../assets/establishments/Cave.jpg");}
@@ -48,4 +167,4 @@
     70% {background-image: url("../../../assets/establishments/Mars.jpg");}
     80% {background-image: url("../../../assets/establishments/Space.jpg");}
     90% {background-image: url("../../../assets/establishments/Mars.jpg");}
-}
+} */
