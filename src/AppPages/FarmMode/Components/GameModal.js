@@ -28,9 +28,6 @@ class GameModal extends React.Component {
       modalText = (
         <>
           Congratulations, you just won {this.props.wonValue} $BNANA! <br/>
-          Remember this is a beta version, your balance will appear in 
-          your account only as long as your session lasts. <br/>
-          Get ready for the real game launch!
         </>
       );
     } else {
@@ -38,9 +35,6 @@ class GameModal extends React.Component {
         <>
           Unfortunatelly your monkey is not ready to farm at this station :( <br/>
           Upgrade him to level 2 so that you can earn $BNANA even if you land at this spot. <br/>
-          Remember this is a beta version, your balance will appear in 
-          your account only as long as your session lasts. <br/>
-          Get ready for the real game launch!
         </>
       )
     } 

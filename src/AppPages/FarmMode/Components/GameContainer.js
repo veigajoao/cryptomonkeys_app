@@ -20,6 +20,23 @@ import { updateBetaBalance } from "../../../ethereum/web3";
 
 import metaMaskLogo from "../../../assets/metaMask/MetaMask.png";
 
+const getBaseFarm = (monkeyType) => {
+    let farmMap = {
+      "1": 4.55,
+      "2": 5.05,
+      "3": 5.25,
+      "4": 5.55,
+      "5": 7.25,
+      "6": 8.30,
+      "7": 9.25,
+      "8": 11.10,
+      "9": 15.30,
+      "10": 19.75,
+      "11": 23.95
+    };
+    return farmMap[monkeyType];
+};
+
 const GameContainer = (props) => {
 
     const [NFTList, setNFTList] = useState("load");
@@ -67,22 +84,24 @@ const GameContainer = (props) => {
 
     const playGame = async () => {
 
+      let token_id = rouletteTokenData.nftIndex;
       const tokenData = rouletteTokenData;
-      setGameStatus("playing");;
+      setGameStatus("playing");
+      const walletHash = await window.web3Instance.eth.getAccounts();
+      await window.gameContract.methods.baseMining(token_id).send({from: walletHash[0]});
+      const gameResult = await window.gameContract.methods.getLastResult(token_id).call();
 
       //substitute for blockchain call later
-      let seed = Math.random();
-      let result = seed > 0.8 ? 2 : 1;
-      let baseFarm = 1;
+      let baseFarm = getBaseFarm(rouletteTokenData.nftData[0]);
 
       if (tokenData.nftData[1] === "2") {
         setWon(true);
-        let wonAmmount = result === 2 ? 6 * baseFarm : baseFarm;
+        let wonAmmount = gameResult === 2 ? 6 * baseFarm : baseFarm;
         setWonValue(wonAmmount);
         updateBetaBalance(wonAmmount);
 
       } else {
-        if (result === 2) {
+        if (gameResult === "2") {
           setWon(false)
         } else {
           setWon(true);
@@ -93,9 +112,9 @@ const GameContainer = (props) => {
       
       setTimeout(() => {
 
-        if (result === 1) {
+        if (gameResult === "1") {
           setGameStatus("game1won");
-        } else if (result === 2) {
+        } else if (gameResult === "2") {
           setGameStatus("game2won");
         }
       
@@ -159,12 +178,12 @@ const GameContainer = (props) => {
     } else {
       NFTCards = [];
       for (const NFT of NFTList) {
-        // if (!NFT.nftData[3]) {
-        //   continue;
-        // }
+        if (!NFT.nftData[3]) {
+          continue;
+        }
         let serialNumber = (parseInt(NFT.nftIndex) + 7834).toString();
         NFTCards.push(
-          <NFTCard key={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} playGame={() => openGame(NFT)}/>
+          <NFTCard key={NFT.nftIndex} nft_id={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} playGame={() => openGame(NFT)}/>
         );
       }
     }

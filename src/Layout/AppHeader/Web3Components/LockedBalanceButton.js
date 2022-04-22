@@ -9,17 +9,12 @@ const LockedBalanceButton = (props) => {
 
     const fetchBalance = async () => {
         if (window.isUserWallet) {
-            // const walletHash = await window.web3Instance.eth.getAccounts();
-            // const bnanaBalance = await window.bnanaContract.methods.balanceOf(walletHash[0]).call();
-            // setBalance(window.web3Instance.utils.fromWei(bnanaBalance, "ether"));
-            if (window.betaBalance === undefined) {
-                setBalance(0);
-            } else {
-                setBalance(window.betaBalance);
-            }
+            const walletHash = await window.web3Instance.eth.getAccounts();
+            const LockedBalance = await window.gameContract.methods.userBalance(walletHash[0]).call();
+            setBalance(window.web3Instance.utils.fromWei(LockedBalance, "ether"));
             
         } else {
-            setBalance("none");           
+            setBalance("none");
         }
     };
 

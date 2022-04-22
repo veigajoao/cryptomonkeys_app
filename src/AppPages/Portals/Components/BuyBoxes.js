@@ -67,8 +67,7 @@ const BuyBoxes = () => {
         gas: '100000'
       });
       await window.nftContract.methods.mintNft(walletHash[0], rarity).send({
-        from: walletHash[0],
-        gas: '100000'
+        from: walletHash[0]
       });
       fetchData();
     }

@@ -4,21 +4,20 @@ import detectEthereumProvider from '@metamask/detect-provider/dist/detect-provid
 // import contractFileWhitelist from './contracts_build/WhiteListedPresale.json';
 import contractFileBananacoin from './abis/BananaCoin.json';
 import contractFileNft from './abis/CryptoMonkeyChars.json';
+import contractFileGame from './abis/CryptoMonkeysGame.json';
 // import contractFilePresale from './contracts_build/PublicPresale.json';
 
 // const abiWhitelist = "contractFileWhitelist.abi";
 // const whitelistAddress = "0x8E0ED58bAf27CA6f8FE61317C7cf53BB37e5b00f";
 
 const abiBusd = contractFileBananacoin.abi;
-// const busdAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-
-// const abiPresale = "contractFilePresale.abi";
-// const presaleAddress = "0x0C3fD0A556549D261A9758cc7c6F33f6dde298F7";
-
 const bnanaAddress = "0xf9b27685bfaAF96AaedffD45DA69BF7F5d0ea07D";
 
 const abiNft = contractFileNft.abi;
 const nftAddress = "0x9e2DD3813c598b6Ae26305e42011098432D3B08b";
+
+const abiGame = contractFileGame.abi;
+const gameAddress = "0x7B7b0Efc7a6EE1bf3F53699f047363c409ADb28b";
 
 const bscId = '0x38';
 const bscRpcurls = [
@@ -84,7 +83,7 @@ const addToken = async () => {
                 address: bnanaAddress,
                 symbol: 'BNANA',
                 decimals: 18,
-                image: 'https://game.cryptomonkeys.me/assets/img/whitelist/Case Gold Bananas.png',
+                image: 'https://cryptomonkeys.me/images/bnanaCase.png',
             },
         },
     });
@@ -124,6 +123,7 @@ const connectWallet = async () => {
         // window.priceTokenContract =  new window.web3Instance.eth.Contract(abiBusd, busdAddress);
         window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
         window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
+        window.gameContract = new window.web3Instance.eth.Contract(abiGame, gameAddress);
         // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
 
         addToken();

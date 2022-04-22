@@ -4,7 +4,7 @@ export const MainNav = [
     label: "Game Modes",
     content: [
       {
-        label: "Farm (Beta)",
+        label: "Farm",
         to: "#/farm",
       },
       {
@@ -30,8 +30,8 @@ export const MainNav = [
         to: "#/portals",
       },
       {
-        label: "Withdrawal Bnanas (Soon)",
-        to: "#/nft",
+        label: "Withdrawal Bnanas",
+        to: "#/bnana",
       },
       {
         label: "Marketplace (Soon)",

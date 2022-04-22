@@ -64,7 +64,7 @@ const NFTCard = (props) => {
     const [timeWork, setTimeWork] = useState(0);
     const [canWork, setCanWork] = useState(true);
 
-    const { monkeyType, monkeyLevel, tokenId, playGame } = props;
+    const { monkeyType, monkeyLevel, tokenId, playGame, nft_id } = props;
 
     const monkeyName = getMonkeyName(monkeyType);
 
@@ -80,10 +80,6 @@ const NFTCard = (props) => {
         }
     }
 
-    const fetchTimeToWork = async () => {
-     //implement for real game version   
-    }
-
     useEffect(() => {
         if (!canWork) {
             if (!isCounterSet) {
@@ -92,8 +88,19 @@ const NFTCard = (props) => {
                     setCounter(counter + 1);
                 }, 1000);
             }
+        } else {
+            const fetchTimeToWork = async () => {
+                let lastMine = await window.gameContract.methods.getLastMiningMapping(nft_id).call();
+                let now = await window.gameContract.methods.getNow().call();
+                let nextWork = parseInt(lastMine) + 28800;
+                if (parseInt(now) < nextWork) {
+                    setCanWork(false);
+                    setTimeWork(nextWork);
+                }
+            }
+            fetchTimeToWork();
         }
-    }, [timeWork, canWork, counter, isCounterSet])
+    }, [timeWork, canWork, counter, isCounterSet, nft_id])
 
     let workStatus;
     if (canWork) {

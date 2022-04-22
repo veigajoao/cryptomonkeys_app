@@ -33,7 +33,7 @@ const BalanceButton = () => {
     }
     buttonElement = 
         <Button outline color="primary" className='me-3' style={{visibility: hidden ? "hidden" : "visible"}}>
-            <img src={bnanaLogo} alt={""} className='me-3' style={{width: "30px", height: "auto"}}/>{balance}
+            <img src={bnanaLogo} alt={""} className='me-3' style={{width: "30px", height: "auto"}}/>{parseInt(balance)}
         </Button>
     
     return (

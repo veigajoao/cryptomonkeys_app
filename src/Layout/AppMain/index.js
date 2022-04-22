@@ -17,6 +17,7 @@ const Tables = lazy(() => import("../../DemoPages/Tables"));
 
 const NftInventory = lazy(() => import("../../AppPages/NftInventory"));
 const Portals = lazy(() => import("../../AppPages/Portals"));
+const Withdraw = lazy(() => import("../../AppPages/Withdraw"));
 
 const FarmMode = lazy(() => import("../../AppPages/FarmMode"));
 
@@ -239,7 +240,7 @@ const AppMain = () => {
                     </div>
                 </div>
             }>
-                <Route exact path="/bnana" component={NftInventory}/>
+                <Route exact path="/bnana" component={Withdraw}/>
             </Suspense>
 
             {/* Unlock BNANAS */}
