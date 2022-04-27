@@ -10,7 +10,7 @@ const LockedBalanceButton = (props) => {
     const fetchBalance = async () => {
         if (window.isUserWallet) {
             const walletHash = await window.web3Instance.eth.getAccounts();
-            const LockedBalance = await window.gameContract.methods.userBalance(walletHash[0]).call();
+            const LockedBalance = await window.gameContractOld.methods.userBalance(walletHash[0]).call();
             setBalance(window.web3Instance.utils.fromWei(LockedBalance, "ether"));
             
         } else {

@@ -83,7 +83,6 @@ const GameContainer = (props) => {
     });
 
     const playGame = async () => {
-
       let token_id = rouletteTokenData.nftIndex;
       const tokenData = rouletteTokenData;
       setGameStatus("playing");
@@ -183,7 +182,7 @@ const GameContainer = (props) => {
         }
         let serialNumber = (parseInt(NFT.nftIndex) + 7834).toString();
         NFTCards.push(
-          <NFTCard key={NFT.nftIndex} nft_id={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} playGame={() => openGame(NFT)}/>
+          <NFTCard key={NFT.nftIndex} nft_id={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} />
         );
       }
     }

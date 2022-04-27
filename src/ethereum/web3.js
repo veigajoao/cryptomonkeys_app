@@ -5,6 +5,7 @@ import detectEthereumProvider from '@metamask/detect-provider/dist/detect-provid
 import contractFileBananacoin from './abis/BananaCoin.json';
 import contractFileNft from './abis/CryptoMonkeyChars.json';
 import contractFileGame from './abis/CryptoMonkeysGame.json';
+import contractFileGameSimple from './abis/CryptoMonkeysGameSimple.json';
 // import contractFilePresale from './contracts_build/PublicPresale.json';
 
 // const abiWhitelist = "contractFileWhitelist.abi";
@@ -16,8 +17,12 @@ const bnanaAddress = "0xf9b27685bfaAF96AaedffD45DA69BF7F5d0ea07D";
 const abiNft = contractFileNft.abi;
 const nftAddress = "0x9e2DD3813c598b6Ae26305e42011098432D3B08b";
 
-const abiGame = contractFileGame.abi;
-const gameAddress = "0x7B7b0Efc7a6EE1bf3F53699f047363c409ADb28b";
+const abiGameOld = contractFileGame.abi;
+const gameAddressOld = "0x7B7b0Efc7a6EE1bf3F53699f047363c409ADb28b";
+
+const abiGame = contractFileGameSimple.abi;
+const gameAddress = "0xb2Cd6b261dB1eb72137DEBe0Fe56A59A68b15045";
+
 
 const bscId = '0x38';
 const bscRpcurls = [
@@ -124,6 +129,7 @@ const connectWallet = async () => {
         window.nftContract = new window.web3Instance.eth.Contract(abiNft, nftAddress);
         window.bnanaContract = new window.web3Instance.eth.Contract(abiBusd, bnanaAddress);
         window.gameContract = new window.web3Instance.eth.Contract(abiGame, gameAddress);
+        window.gameContractOld = new window.web3Instance.eth.Contract(abiGameOld, gameAddressOld);
         // window.presaleContract = new window.web3Instance.eth.Contract(abiPresale, presaleAddress);
 
         addToken();

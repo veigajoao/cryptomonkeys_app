@@ -63,22 +63,41 @@ const NFTCard = (props) => {
     const [counter, setCounter] = useState(0);
     const [timeWork, setTimeWork] = useState(0);
     const [canWork, setCanWork] = useState(true);
+    const [timeInterval, setTimeInterval] = useState(0)
+    const [availableBalance, setAvailableBalance] = useState("0");
+    const [initialTime, setInitialTime] = useState(0);
 
-    const { monkeyType, monkeyLevel, tokenId, playGame, nft_id } = props;
+    const { monkeyType, monkeyLevel, tokenId, nft_id } = props;
 
     const monkeyName = getMonkeyName(monkeyType);
 
     const monkeyRarity = getMonkeyRarity(monkeyType);
 
-    const goWork = () => {
-        if (canWork) {
-            playGame();
-            setCanWork(false);
-            let now = new Date()
-            let nowSeconds = parseInt(now.getTime() / 1000)
-            setTimeWork(nowSeconds + 28800);
-        }
+    const stakeNft = async () => {
+        const walletHash = await window.web3Instance.eth.getAccounts();
+        await window.gameContract.methods.baseMining(nft_id).send({from: walletHash[0]});
+        setCounter(counter + 1);
     }
+
+    const withdrawalNft = async () => {
+        const walletHash = await window.web3Instance.eth.getAccounts();
+        await window.gameContract.methods.withdrawalUserBalance(nft_id).send({from: walletHash[0]});
+        setCanWork(true);
+    }
+
+    const updateBalance = async () => {
+        const balance = await window.gameContract.methods.getAvailableBalance(nft_id).call();
+        setAvailableBalance(balance);
+    }
+
+    // const getTime = async () => {
+    //     let baseSalary = await window.gameContract.methods.baseSalary(monkeyType).call();
+    //     let multiplier = await window.gameContract.methods.lvl2Multiplier().call()
+    //     let salary = monkeyLevel === "2" ? baseSalary * multiplier : baseSalary;
+    //     let timeInterval = await window.gameContract.methods.waitPeriod().call();
+    //     let ethereumNow = await window.gameContract.methods.getNow().call();
+    //     let nftNow = await window.gameContract.methods.lastMiningMapping(nft_id).call();
+    // }
 
     useEffect(() => {
         if (!canWork) {
@@ -87,15 +106,28 @@ const NFTCard = (props) => {
                 setInterval(() => {
                     setCounter(counter + 1);
                 }, 1000);
+                updateBalance();
             }
         } else {
             const fetchTimeToWork = async () => {
                 let lastMine = await window.gameContract.methods.getLastMiningMapping(nft_id).call();
                 let now = await window.gameContract.methods.getNow().call();
-                let nextWork = parseInt(lastMine) + 28800;
-                if (parseInt(now) < nextWork) {
+                let timeIntervalVar = await window.gameContract.methods.waitPeriod().call();
+                let nextWork = parseInt(timeIntervalVar) - ( ( parseInt(now) - parseInt(lastMine) ) % parseInt(timeIntervalVar) );
+                let availableBalanceVar = await window.gameContract.methods.getAvailableBalance(nft_id).call();
+
+
+                let nowPc = new Date();
+                let nowSeconds = nowPc.getTime() / 1000;
+                if (parseInt(lastMine) !== "0") {
                     setCanWork(false);
                     setTimeWork(nextWork);
+                    setTimeInterval(timeIntervalVar);
+                    setAvailableBalance(availableBalanceVar);
+                    setInitialTime(nowSeconds);
+                } else {
+                    setCanWork(false);
+                    setAvailableBalance("0");
                 }
             }
             fetchTimeToWork();
@@ -103,15 +135,17 @@ const NFTCard = (props) => {
     }, [timeWork, canWork, counter, isCounterSet, nft_id])
 
     let workStatus;
+    let workButton;
     if (canWork) {
         workStatus = (
             <>Ready to work</>
-        )
+        );
+        workButton = <Button onClick={stakeNft} color="primary">WORK!</Button>
     } else {
-        let now = new Date()
-        let nowSeconds = now.getTime() / 1000
-
-        let missingTime = timeWork - nowSeconds;
+        let now = new Date();
+        let nowSeconds = now.getTime() / 1000;
+        let elapsedTime = nowSeconds - initialTime;
+        let missingTime = parseInt(timeWork - elapsedTime);
 
         let hours = parseInt(missingTime / 3600);
         let minutes = parseInt((missingTime % 3600) / 60);
@@ -123,10 +157,10 @@ const NFTCard = (props) => {
         if (seconds < 10) {
             seconds = "0" + seconds.toString();
         }
-
         workStatus = (
-            <>Ready in {hours}:{minutes}:{seconds}</>
+            <>Next farm in {hours}:{minutes}:{seconds}</>
         )
+        workButton = <Button onClick={withdrawalNft} color="primary">COLLECT!</Button>
     }
 
     return (
@@ -134,23 +168,25 @@ const NFTCard = (props) => {
             <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>
                   <CardBody>
                     <Row className="text-center gx-0">
-                            <Col xs="2" style={{display: "flex", justifyContent: "left"}}>
+                            <Col xs="2" style={{display: "flex", justifyContent: "left", alignItems: "center"}}>
                                 #{tokenId}
                             </Col>
-                            <Col xs="2" style={{display: "flex", justifyContent: "left"}}>
+                            <Col xs="2" style={{display: "flex", justifyContent: "left", alignItems: "center"}}>
                                 {monkeyName}
                             </Col>
-                            <Col xs="2" style={{display: "flex", justifyContent: "center"}}>
+                            <Col xs="2" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                                 {monkeyRarity}
                             </Col>
-                            <Col xs="2" style={{display: "flex", justifyContent: "center"}}>
+                            <Col xs="2" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                                 Level: {monkeyLevel}
                             </Col>
-                            <Col xs="2" style={{display: "flex", justifyContent: "center"}}>
+                            <Col xs="2" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                Farmed: {availableBalance}
+                                <br/>
                                 {workStatus}
                             </Col>
-                            <Col xs="2" style={{display: "flex", justifyContent: "center"}}>
-                                <Button disabled={!canWork} onClick={goWork} color="primary">WORK!</Button>
+                            <Col xs="2" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                {workButton}
                             </Col>
                             
                     </Row>

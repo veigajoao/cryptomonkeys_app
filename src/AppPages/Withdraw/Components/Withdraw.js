@@ -44,10 +44,10 @@ const BuyBoxes = () => {
         if (window.isUserWallet) {
             setNeedFetch("load");
             const walletHash = await window.web3Instance.eth.getAccounts();
-            const withdrawTiming = await window.gameContract.methods.withdrawalTime().call();
-            const lastUserWithdraw = await window.gameContract.methods.lastWithdrawal(walletHash[0]).call();
-            const LockedBalance = await window.gameContract.methods.userBalance(walletHash[0]).call();
-            const now = await window.gameContract.methods.getNow().call();
+            const withdrawTiming = await window.gameContractOld.methods.withdrawalTime().call();
+            const lastUserWithdraw = await window.gameContractOld.methods.lastWithdrawal(walletHash[0]).call();
+            const LockedBalance = await window.gameContractOld.methods.userBalance(walletHash[0]).call();
+            const now = await window.gameContractOld.methods.getNow().call();
             setBlockchainNow(now);
             setUserBalance(window.web3Instance.utils.fromWei(LockedBalance, "ether"));
             setLastWithdraw(lastUserWithdraw);
@@ -66,7 +66,7 @@ const BuyBoxes = () => {
 
     const withdrawBalance = async () => {
       const walletHash = await window.web3Instance.eth.getAccounts();
-      await window.gameContract.methods.withdrawalUserBalance().send({from: walletHash[0]});
+      await window.gameContractOld.methods.withdrawalUserBalance().send({from: walletHash[0]});
       fetchBalance();
     }
 
