@@ -59,6 +59,8 @@ const GameContainer = (props) => {
     const [gameStatus, setGameStatus] = useState("preGame");
     const [timer, setTimer] = useState("");
 
+    const { forceUpdate } = props;
+
     const fetchData = async () => {
       if (window.isUserWallet !== true) {
         setNFTList("load");
@@ -182,7 +184,7 @@ const GameContainer = (props) => {
         }
         let serialNumber = (parseInt(NFT.nftIndex) + 7834).toString();
         NFTCards.push(
-          <NFTCard key={NFT.nftIndex} nft_id={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} />
+          <NFTCard key={NFT.nftIndex} nft_id={NFT.nftIndex} monkeyType={NFT.nftData[0]} monkeyLevel={NFT.nftData[1]} tokenId={serialNumber} forceUpdate={forceUpdate}/>
         );
       }
     }

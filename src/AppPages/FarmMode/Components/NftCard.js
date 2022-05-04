@@ -67,7 +67,7 @@ const NFTCard = (props) => {
     const [availableBalance, setAvailableBalance] = useState("0");
     const [initialTime, setInitialTime] = useState(0);
 
-    const { monkeyType, monkeyLevel, tokenId, nft_id } = props;
+    const { monkeyType, monkeyLevel, tokenId, nft_id, forceUpdate } = props;
 
     const monkeyName = getMonkeyName(monkeyType);
 
@@ -83,11 +83,12 @@ const NFTCard = (props) => {
         const walletHash = await window.web3Instance.eth.getAccounts();
         await window.gameContract.methods.withdrawalUserBalance(nft_id).send({from: walletHash[0]});
         setCanWork(true);
+        forceUpdate();
     }
 
     const updateBalance = async () => {
         const balance = await window.gameContract.methods.getAvailableBalance(nft_id).call();
-        setAvailableBalance(balance);
+        setAvailableBalance(window.web3Instance.utils.fromWei(balance, "ether"));
     }
 
     // const getTime = async () => {
@@ -119,14 +120,14 @@ const NFTCard = (props) => {
 
                 let nowPc = new Date();
                 let nowSeconds = nowPc.getTime() / 1000;
-                if (parseInt(lastMine) !== "0") {
+                if (parseInt(lastMine) !== 0) {
                     setCanWork(false);
                     setTimeWork(nextWork);
                     setTimeInterval(timeIntervalVar);
-                    setAvailableBalance(availableBalanceVar);
+                    setAvailableBalance(window.web3Instance.utils.fromWei(availableBalanceVar, "ether"));
                     setInitialTime(nowSeconds);
                 } else {
-                    setCanWork(false);
+                    // setCanWork(true);
                     setAvailableBalance("0");
                 }
             }
@@ -147,22 +148,30 @@ const NFTCard = (props) => {
         let elapsedTime = nowSeconds - initialTime;
         let missingTime = parseInt(timeWork - elapsedTime);
 
-        let hours = parseInt(missingTime / 3600);
-        let minutes = parseInt((missingTime % 3600) / 60);
-        let seconds = parseInt(missingTime % 60);
+        if (missingTime >= 0) {
+            let hours = parseInt(missingTime / 3600);
+            let minutes = parseInt((missingTime % 3600) / 60);
+            let seconds = parseInt(missingTime % 60);
 
-        if (minutes < 10) {
-            minutes = "0" + minutes.toString();
+            if (minutes < 10) {
+                minutes = "0" + minutes.toString();
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds.toString();
+            }
+            workStatus = (
+                <>Next farm in {hours}:{minutes}:{seconds}</>
+            )
+        } else {
+            workStatus = (
+                <>Next farm in 0:00:00</>
+            )
+            setCanWork(true);
         }
-        if (seconds < 10) {
-            seconds = "0" + seconds.toString();
-        }
-        workStatus = (
-            <>Next farm in {hours}:{minutes}:{seconds}</>
-        )
+        
         workButton = <Button onClick={withdrawalNft} color="primary">COLLECT!</Button>
-    }
 
+    }
     return (
         <Col xs="12" style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
             <Card className="mb-1 mt-2" style={{width: "80%", background: "#240940", color: "white"}}>

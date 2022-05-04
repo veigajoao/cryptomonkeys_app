@@ -24,7 +24,7 @@ const FarmMode = ({ match }) => {
         <AppSidebar />
         <div className="app-main__outer">
           <div className="app-main__inner p-0">
-            <GameContainer/>
+            <GameContainer forceUpdate={() => forceUpdate()}/>
           </div>
         </div>
       </div>

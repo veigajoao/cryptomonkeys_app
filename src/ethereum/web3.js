@@ -21,7 +21,7 @@ const abiGameOld = contractFileGame.abi;
 const gameAddressOld = "0x7B7b0Efc7a6EE1bf3F53699f047363c409ADb28b";
 
 const abiGame = contractFileGameSimple.abi;
-const gameAddress = "0x72951F5Dff7B600fb7b62bfcea5718579b738a0f";
+const gameAddress = "0x845F91f9C7aB68d6DC57490c8570BfbCd5531dcD";
 
 
 const bscId = '0x38';
