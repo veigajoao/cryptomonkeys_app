@@ -34,6 +34,10 @@ export const MainNav = [
         to: "#/bnana",
       },
       {
+        label: "Claim Presale Bnanas",
+        to: "#/presalewithdraw",
+      },
+      {
         label: "Marketplace (Soon)",
         to: "#",
       },
